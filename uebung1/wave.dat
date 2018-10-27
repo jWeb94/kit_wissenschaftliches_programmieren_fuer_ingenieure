@@ -1,0 +1,15 @@
+    # Daten fuer einer periodischen Messung: 
+    # Wiederholung alle 4 Messungen
+    # Zeit in [s]    Auslenkung [mm]
+    0.00             1.0   
+    0.25            25.0
+    0.50             4.0
+    0.75           -20.0
+    1.00             1.0   
+    1.25            25.0
+    1.50             4.0
+    1.75           -20.0
+    2.00             1.0   
+    2.25            25.0
+    2.50             4.0
+    2.75           -20.0

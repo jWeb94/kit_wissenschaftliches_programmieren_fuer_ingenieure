@@ -46,8 +46,14 @@ int main(){
   // get the number of iterations
   inputParserInt(inputArgDescipt, numIter);
 
+  // const int numIterConst = numIter; // to use a variable for initializing an array, the variable must be an Integral Constant Expression (ICE)! It must be computable by compile time
+  //const std::vector<int> numIterConst = numIter;
+  const int numIterConst = numIter;
+
+// TODO: vector of vector to solve the problem
+// oder mit EIGEN3
   //create result array based on the number of iterations
-  std::array<std::array<double, 3>, numIter> resultArray;
+  std::array<std::array<double, 3>, numIter> resultArray; // numIterConst must be an constant expression, due to the fixed size of the array-if numIter would change it implies that the array changes size, which is not possible
   std::cout << resultArray.size()<< std::endl; // debug
 
   resultFibo = fiboApprox(startValue0, startValue1);

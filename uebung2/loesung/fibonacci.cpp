@@ -2,7 +2,7 @@
 
 // global variables
 size_t numIter = 1; // mandatory to check if the max iteration is reached in the fibonacci calculation
-std::size_t counter = 1;
+std::size_t counter = 0;
 
 void inputParserInt(std::string description, size_t & outputArg){
   std::cout<<"Please insert " << description << ": " << std::endl;
@@ -13,16 +13,14 @@ void inputParserInt(std::string description, size_t & outputArg){
 }
 
 
-int fiboApprox(double** resultArrayRef, int  f_i, int f_i_m1){
+void fiboApprox(double** resultArrayRef, int  f_i, int f_i_m1){
   // calculate the fibonacci values and the golden mean
   int outputVal;
   if (counter == numIter){
-      // return outputVal;
-      // write results in the result array
-      resultArrayRef[counter][0] = counter;                                 // counter
-      resultArrayRef[counter][1] = outputVal;                               // current value
-      resultArrayRef[counter][2] = outputVal/resultArrayRef[counter - 1][1];   // golden mean
-
+      std::cout << "finished calculating" << std::endl;
+      std::cout << "the number of iterations is: " << resultArrayRef[numIter -1][0] << std::endl;
+      std::cout << "the fibonacci value is: " << resultArrayRef[numIter - 1][1] << std::endl;
+      std::cout << "the golden mean is: " << resultArrayRef[numIter - 1][2] << std::endl;
   }
   else{
     outputVal = f_i + f_i_m1;
@@ -31,8 +29,12 @@ int fiboApprox(double** resultArrayRef, int  f_i, int f_i_m1){
     // write results in the result array
     resultArrayRef[counter][0] = counter;                                 // counter
     resultArrayRef[counter][1] = outputVal;                               // current value
-    resultArrayRef[counter][2] = outputVal/resultArrayRef[counter - 1][1];   // golden mean
-
+    if (counter == 0){
+        resultArrayRef[counter][2] = outputVal/outputVal; // in the first iteration we just have the initial value to calculate the golden mean
+    }
+    else{
+        resultArrayRef[counter][2] = outputVal/resultArrayRef[counter - 1][1];   // golden mean
+    }
     // counter increment
     counter ++;
 
@@ -40,8 +42,18 @@ int fiboApprox(double** resultArrayRef, int  f_i, int f_i_m1){
   }
 }
 
+void writeToErrorChannel(double ** results){
+  // there is no function to get the size of the array if you did not use a library, so we have to hard code it!
+  for (int i = 0; i < numIter; i++){
+    std::cerr << results[i][0] << " " << results[i][1] << " " << results[i][2] << std::endl;
+  }
+}
+
 
 int main(){
+
+  // TODO: Warum geht das nur bis 46? 
+
   // variable declarations
   std::string inputArgDescipt = "number of fibonacci iterations";
   int startValue0 = 0;
@@ -71,10 +83,12 @@ int main(){
     // Jedes i*3 te Element entspricht der Spalte
   }
 
-  resultFibo = fiboApprox(feld2d, startValue0, startValue1);
+  fiboApprox(feld2d, startValue0, startValue1);
 
-  std::cout << "The result of the fibonaccti calculation is: " << feld2d[numIter][2] << std::endl;
-  std::cout << "The golden mean of the fibonaccti calculation is: " << feld2d[numIter][3] << std::endl;
+  std::cout << "The result of the fibonaccti calculation is: " << feld2d[numIter-1][2] << std::endl;        // -1 due to the begin of the iteration at the 0th element
+  std::cout << "The golden mean of the fibonaccti calculation is: " << feld2d[numIter-1][3] << std::endl;
+
+  writeToErrorChannel(feld2d);
 
   // delete the result array to avoid an dangeling pointer
   delete[] feld2d[0]; // delete the value array

@@ -61,7 +61,7 @@ void calculateArea(double& result, double& radius, size_t& N){
 int main(){
   // variable declaration and initialisation
   size_t N;
-  double r = 1; // Einheitskreis
+  double r = 5; // Einheitskreis
   double area;
   std::string stepsDesc = "the number of iterations for the monte carlo simuliátion";
 

@@ -4,7 +4,7 @@
 
 
 // TODO: vary the datatype to analyse the behaviour of the calculation dependend on the datatype
-typedef double datatypeTest;
+typedef float datatypeTest;
 // TODO: Was soll ich jetzt davon ablesen koennen?
 
 bool testHeap = false;
@@ -14,6 +14,7 @@ datatypeTest inputParser(std::string description, int min=-1, int max=-1){
   datatypeTest number; // return value
   std::cout << "please insert " << description << std::endl;
   std::cin >> number;
+  std::cout<<"number is: " << number << std::endl;
 
   // check if a valid number was inserted
   if (number <= 0){
@@ -103,8 +104,8 @@ int main(){
   datatypeTest maxVal;
   datatypeTest range;
   size_t steps;
-  double stepSize;
-  double tempXVal;
+  datatypeTest stepSize;
+  datatypeTest tempXVal;
 
   /*
   * Allgemein finde ich die Loesung mit einer void funktion und dem Rückgabewert als Uebergabeparameter eleganter,da
@@ -124,7 +125,7 @@ int main(){
   std::cout << "steps after casting is: " << steps << std::endl;
 
   range = maxVal - minVal;
-  stepSize = double(range)/double(steps); // calculate the step size with minimum 1000 points in the inserted interval
+  stepSize = datatypeTest(range)/datatypeTest(steps); // calculate the step size with minimum 1000 points in the inserted interval
   // TODO: here you can vary the step size for the calculation
 
   // create a result array
@@ -140,10 +141,10 @@ int main(){
   std::cout << "steps is : " << steps << std::endl;
   for (size_t i = 0; i < steps; i++){
     // calculate the x value
-    tempXVal = double(minVal) + double(i)*stepSize; // x value for the i-th iteration, based on the min value of the interval
+    tempXVal = datatypeTest(minVal) + datatypeTest(i)*stepSize; // x value for the i-th iteration, based on the min value of the interval
 
     resultArrayHeap[i][0] = tempXVal;                                   // x value in the first column
-    resultArrayHeap[i][1] = (sqrt(16 + tempXVal) -double(4))/tempXVal;  // y value in the secound column
+    resultArrayHeap[i][1] = (sqrt(datatypeTest(16) + tempXVal) -datatypeTest(4))/tempXVal;  // y value in the secound column
 
     /*
     // test break:
@@ -170,5 +171,6 @@ int main(){
   delete [] resultArrayHeap;    // delete the pointer array
   std::cout << "the memory on the heap was unblocked" << std::endl;
   std::cout << "finished calculation" << std::endl;
+  std::cout << "correct result!!!" << std::endl;
 
 }

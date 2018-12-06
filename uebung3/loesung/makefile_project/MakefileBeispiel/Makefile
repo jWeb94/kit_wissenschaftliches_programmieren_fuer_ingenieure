@@ -1,4 +1,4 @@
-PROG=programm1  # name der zu-erstellenden executable
+PROG=programmTerminal  # name der zu-erstellenden executable
 
 CFLAGS=-O2		# compiler optimierung level 2
 				# -O1 performs only optimisations that don't effect the compile time much.
@@ -6,7 +6,7 @@ CFLAGS=-O2		# compiler optimierung level 2
 				# -O3 performs maximal speed optimisation
 				# -Os tries to make the executable as small as possible
 
-LDFLAGS=$(CFLAGS) # linker flags entspricht der compiler flag	
+LDFLAGS=$(CFLAGS) # linker flags entspricht der compiler flag
 
 CC=g++   #hier kann der Name des C++ compilers festgelegt werden
 
@@ -15,24 +15,31 @@ OBJ= $(SRCS:.cxx=.o)			# erstelle aus den namen der source code dateien die name
 # muesste OBJ= $(SRCS:%.cxx=%.o) entsprechen
 
 
-all: $(SRCS) $(PROG) # definiere das erste target, welches auch zuerst aufgerufen wird, das von ALLEN anderen targets abhaengt. 
-					 # Wird nun das target all aufgerufen, werden alle von ihm abhängigen targets ueberprueft und evt neu gebaut!
-					 # all ist ein phony target
-					 # wird das makefile ohne spezifiziertes target aufgerufen, so wird all gebaut, weil es zuerst steht!
-					 
-					 # Exkurs: will ich nur einen Teil der Abhaengigkeiten neu bauen kann ich auch einfach das Makefile mit dem entsprechenden Target in der Shell eingeben! 
+all: $(SRCS) $(PROG) 	# definiere das erste target, welches auch zuerst aufgerufen wird, das von ALLEN anderen targets abhaengt.
+					 						# Wird nun das target all aufgerufen, werden alle von ihm abhängigen targets ueberprueft und evt neu gebaut!
+					 						# wird das makefile ohne spezifiziertes target aufgerufen, so wird all gebaut, weil es zuerst steht!
 
+					 						# Das Makefile wird komplett durch gegangen, damit Make alle Dependencys kennt. Allerdings wird nur das erste Target als Executable erstellt
+					 						# Ziel des Make-Files mit einem ersten Target 'all' ist, ein ausführbares exec bei einem argumentenlosem Aufruf von Make zu erstellen!
+											# Deshalb darf nur eine Dependency mit einer Compileranweisung zur Erstellung einer Executable vorkommen
 
-$(PROG): $(OBJ)						# 
-	$(CC)  $(CFLAGS) $(OBJ) -o $@
+					 						# Exkurs: will ich nur einen Teil der Abhaengigkeiten neu bauen kann ich auch einfach das Makefile mit dem entsprechenden Target in der Shell eingeben!
+											# zB beim Clean - Target: $ make clean
+
+$(PROG): $(OBJ)										# Aufruf des Targets, das in der Variable PROG gepeichert, das von den Dateien in der Variable OBJ (-> alle Objektdateien) abhängt
+	$(CC)  $(CFLAGS) $(OBJ) -o $@		# Regel, wie es mit den Abhängigkeiten umgehen soll
+																	# Dabei wird geprüft, ob die Anhängigkeiten neuer als das Target sind
+																	#
+																	# Hier: Die Zieldatei hängt von allen Objektdateien ab
 
 #Regel um aus Dateien mit .cxx Endung eine Objektdatei (mit .o Endung) zu erstellen
 
-%.o:%.cxx
-	$(CC)  $(CFLAGS) -c $<
+%.o:%.cxx 									# Jede Objektdatei (Target) hängt von der gleichnamigen cxx Datei ab 
+	$(CC)  $(CFLAGS) -c $<		# So soll mit den Objektdateien umgegangen werden, wenn der Quellcode neuer ist als die Objektdatei
 
-clean:
-	rm -rf *.o $(PROG)
+clean:							# Phony Target Clean -> keine Abhängigkeit
+	rm -rf *.o $(PROG)			# Anweisung: Lösche alle erzeugten Objektdateien UND die erzeugte Executable
+	#rm -rf *.o					# Anweisung: Lösche nur die Objektdateien
 
 ## dependencies
 

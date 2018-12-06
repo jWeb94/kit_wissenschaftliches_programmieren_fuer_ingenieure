@@ -5,6 +5,10 @@ using namespace std;
 
 int main(){
 
+	/*
+	 * Main Methode, in der alles aufgerufen wird
+	 */
+
   int summe,a,b;
 
   cout<<"a und b eingeben:";

@@ -1,6 +1,6 @@
 PROG = game
 
-FLAGS = -O2 -I /home/ws/account/Documents/eigen3/ #hier muss der Pfad angepasst werden
+FLAGS = -O2 -I /home/jens/Schreibtisch/wissenschaftliches_progammieren_fuer_ingenieure/wissenschaftliches_programmieren_fuer_ingenieure_ws1819/uebung3/loesung/eigen3_einfuehrung/eigen3/ #hier muss der Pfad angepasst werden
 
 CC = g++ 
 

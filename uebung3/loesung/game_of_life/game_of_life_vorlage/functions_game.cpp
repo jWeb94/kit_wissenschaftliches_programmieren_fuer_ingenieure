@@ -87,6 +87,32 @@ void make_step(MatrixXi & field,MatrixXi  & field_tmp){
 	cout << field << endl;
 	*/
 
+
+	extern bool calcPopulationDensity;
+	extern int individuumCounter;
+	/*
+	 * Da die beiden 'externen' Variablen nicht in der eigenen cpp stehen, können diese hier nicht gefunden werden
+	 * Deshalb sage ich mit extern dem Compiler, dass irgendwo im Projekt eine Varible vom angegebenen Typ existiert und er einfach mal weiter kompilieren soll
+	 * Der Linker linkt dann die entsprechenden Variablen aus der Gesamtheit aller Objektdateien.
+	 *
+	 * Ich sage also, dass es irgdnwo in anderen Dateien eine gleichnamige Variable gibt, auf die ich zugreifen möchte!
+	 * Wichtig: Der Typ muss übereinstimmen
+	 *
+	 * Das muss ich immer machen, auch wenn sie in der .h steht!
+	 * Also sobald ich Flags in der .h oder in anderen .cpp initialisiere und lokal drauf zugreifen möchte, brauche ich das Keyword extern!
+	 *
+	 */
+
+
+	// debug
+	cout << calcPopulationDensity << " " << individuumCounter << endl;
+
+
+
+	// reset the individuum counter fpr the step
+	individuumCounter = 0;
+
+
 	Matrix3i tempNeighbors = Matrix3i::Constant(3,3,0); // 3x3 Matrix mit allen Elementen = 0
 
 	// TODO: Checke, ob die Werte an den Rändern passen!
@@ -304,6 +330,18 @@ void make_step(MatrixXi & field,MatrixXi  & field_tmp){
 	cout << "this is the field_tmp: " << endl;
 	cout << field_tmp << endl;
 	*/
+
+	if (calcPopulationDensity){
+
+		int numberOfFields = field.rows()*field.cols();
+
+		double popDensity = double(individuumCounter)/double(numberOfFields);
+
+		cout << "population density is: " << endl;
+		cerr << popDensity << endl;
+	}
+
+
 	field = field_tmp;
 }
 
@@ -328,10 +366,13 @@ void plot_field(MatrixXi const & field, const unsigned int nstep){
 
 
 int checkRules (Matrix3i & neighborhoodMatrix){
+
+	extern bool calcPopulationDensity;
+	extern int individuumCounter;
+
 	// checking the 4 Rules for the neighborhood
 	int existance = neighborhoodMatrix(1, 1); // per default take the central value
 	int neighborCounter = 0;
-	// TODO: Implementiere das Regeln checken
 	for (int i = 0; i < neighborhoodMatrix.rows(); i++){
 		for (int j = 0; j < neighborhoodMatrix.cols(); j++){
 			if (i != 1 && j != 1){ // ignore the central object that is evaluated
@@ -347,25 +388,29 @@ int checkRules (Matrix3i & neighborhoodMatrix){
 
 	if (neighborCounter == 0 || neighborCounter == 1){
 		existance = 0; // Object dies
-		cout << "lonelyness" << endl;
+		//cout << "lonelyness" << endl;
 	}
 	else if (neighborCounter == 2 || neighborCounter == 3){
 
 		if (neighborhoodMatrix(1, 1) == 0 && neighborCounter == 3){
 			existance = 1;
-			cout << "birth" << endl;
+			//cout << "birth" << endl;
+			if (calcPopulationDensity){
+				individuumCounter ++;
+			}
+
 		}
 		else{
 			existance = neighborhoodMatrix(1, 1); // remain 0 or just 2 neighbors
-			cout << "remaining" << endl;
+			//cout << "remaining" << endl;
+			if (calcPopulationDensity){
+					individuumCounter = individuumCounter + neighborhoodMatrix(1, 1);
+			}
 		}
 	}
 	else if (neighborCounter >= 4 && neighborCounter <= 8){
 		existance = 0;
-		cout << "overcrownding" << endl;
-	}
-	else if (neighborCounter == 3){
-		existance = 1;
+		//cout << "overcrownding" << endl;
 	}
 	else {
 		cout << "ERROR: No valid neighborhood! Exiting the program!" << endl;

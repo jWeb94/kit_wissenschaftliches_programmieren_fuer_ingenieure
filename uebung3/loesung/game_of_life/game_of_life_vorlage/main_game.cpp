@@ -8,6 +8,9 @@ using namespace std;		// kein std:: schreiben. Alle std-Library Funktionen sind 
 
 void plot_field(unsigned char * const * const field2d, unsigned int nZeile , unsigned int nSpalte);
 							// Deklariere Funktion -> wird weiter unten beschrieben!
+// Flag Variables -> within the global scope!
+bool calcPopulationDensity = true;
+int individuumCounter = 0;
 
 int main(){
 
@@ -69,7 +72,6 @@ int main(){
 
 
 void plot_field(unsigned char * const * const field2d, unsigned int nZeile , unsigned int nSpalte){
-	// TODO: here comes some cool code
 	/**
 	 * Wofür ist diese Funktion?! plot_field existiert in functions_game.h und wird auch nur mit diesen
 	 * Übergabeparametern aufgerufen -> überladene Funktion. Aber warum steht die hier?

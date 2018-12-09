@@ -3,3 +3,5 @@ TO-DO-List Wissenschaftliches Programmieren
 - Uebung 3: Nachvollziehen, was mit 'nutzen Sie die Modulo Periodizität genau gemeint ist'.
 
 - Vorlesung: Baue LU-Zerlegung nach und simuliere einen Dehnstab (VLCXX_1819_T03_p119-176.pdf; S. 158)
+
+- Vollziehe den Mustercode von Uebung3 game_of_life nach, wie die periodischen Randbedingungen umgesetzt werden und allgemein, wie der Code geschrieben ist.

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+NX=100
+NY=100
+
+frac=$1
+
+echo $1
+
+MAXSTEP=100
+NWRITE=1
+
+{
+    echo $NX $NY
+    echo $frac
+    echo $MAXSTEP
+    echo $NWRITE
+} > "conf_start"
+
+/home/markus/Documents/Lehre/WissProg/WS1617/Uebung/UB05/gol/game < conf_start

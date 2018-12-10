@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 # Erstelle die notwendige Ordnerstruktur mit diesem Skript
 
 # make base folder

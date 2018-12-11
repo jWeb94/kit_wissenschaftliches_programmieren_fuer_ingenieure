@@ -5,3 +5,5 @@ TO-DO-List Wissenschaftliches Programmieren
 - Vorlesung: Baue LU-Zerlegung nach und simuliere einen Dehnstab (VLCXX_1819_T03_p119-176.pdf; S. 158)
 
 - Vollziehe den Mustercode von Uebung3 game_of_life nach, wie die periodischen Randbedingungen umgesetzt werden und allgemein, wie der Code geschrieben ist.
+
+- Uebung 4 ~ Zusatzaufgabe (Shell Skript für den Mittelwert über alle Anfangspopulationen schreiben; Template ist schon erstellt)

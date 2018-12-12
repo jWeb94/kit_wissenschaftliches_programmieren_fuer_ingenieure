@@ -26,8 +26,16 @@ int main(){
     // so entsteht die Abstraktion auf ein 2-dimensionales Objekt!
   }
 
+  /*
+  * Beim Zugriff auf b[1][3] wird auf das zweite Element des Integer-Arrays, das sich im Integer-Pointer-Array auf der 2ten Position befindet, zugegriffen
+  *
+  *
+  */
 
   delete [] b[0]; // lösche das NxM Integer-Array
   delete [] b;    // lösche das Pointer-Array
+   // [] sagt, dass wir Feld löschen. er schaut dann nach, wo und wie die Felddefiniton war und löscht das ganze Element, dass sich dahinter versteckt.
+   // ohne die [] wird nur das erste Feld gelöscht, auf den der Ptr zeigt! ~> wäre hier fehlerhaft!
+
   return 0;
 }

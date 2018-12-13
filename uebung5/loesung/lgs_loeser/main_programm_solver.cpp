@@ -123,13 +123,13 @@ int main(int argc, char* argv[]){
     //TODO: Initialisierung a_w
     for (int i = 0; i < M; i++){ // bis M-1, da wir bei 0 Anfangen und M Stuetzstellen haben
     	// Konventionskoeffizient
-    	//a_w.dataPtr[i] = (double(i)*double(i)*h*h)/(L*L);
-    	a_w(i) = pow(double(i), 2.0)*pow(h, 2.0)/pow(L, 2.0); // calculation with cmath~pow ist power of 1. Argument zu ^2.Argument
+    	a_w(i) = (double(i*i)*h*h)/(L*L);
+    	//a_w(i) = pow(double(i), 2.0)*pow(h, 2.0)/pow(L, 2.0); // calculation with cmath~pow ist power of 1. Argument zu ^2.Argument
     }
 
     //TODO: Initialisierung A_w
 
-    A_w.operator =(0);
+    A_w.operator =(0.);
     // entspricht A_w = 0;
 
     // initialisierung mit Operator fuer 'fill with same value' aus der Matrix-Klasse!
@@ -143,11 +143,14 @@ int main(int argc, char* argv[]){
     for (int j = 1; j < M-1; j++){
     	// j=1, da wir die Nullte Zeile ignorieren. Dort steht in der urspruenglichen Matrix nichts drin!
     	// und j<M-2, da wir unten an der Matrix auch die Randbedingung geltend haben.
-    	A_w(j, j+1) = -1;
-    	A_w(j, j) = 2 + a_w(j)*c; // Diagonalelemente
-    	A_w(j, j-1) = -1;
+    	A_w(j, j+1) = -1.;
+    	A_w(j, j) = (2.0 + a_w(j)*c); // Diagonalelemente
+    	A_w(j, j-1) = -1.;
     }
 
+    // letztes Element ist eine 1
+    A_w(0,0) = 1.;
+    A_w(M-1, M-1) = 1.;
 
     //TODO: Knoten 0 und Knoten M-1 : Randbedingung werden eingebaut
 
@@ -158,7 +161,7 @@ int main(int argc, char* argv[]){
     }
 
     // Durch die Direclet-Randbedingung gegeben
-    b_w(0) = 0;
+    b_w(0) = T_0;
     b_w(M-1) = T_L;
 
     //TODO: A_w muss symmetrisch sein: Anpassen der Matrix A_w und rechten Seite b_w
@@ -166,12 +169,12 @@ int main(int argc, char* argv[]){
     	/*
     	 * vgl handschriftliche Rechnung. Ich muss die Randbedingungen anpassen, sodass eine symetische Matrix entsteht. Dafuer muessen -1 auf Element [0][1] und [M-1][M-2] der Systemmatrix A_w
     	 */
-    A_w(0, 1) = -1;
-    A_w(M-1, M-2) = -1;
+    A_w(1, 0) = 0.;
+    A_w(M-2, M-1) = 0.;
     
     // TODO: Das geht fuer den direkten Loeser (LU-Zerlegung) nicht!)
-    b_w(0) = b_w(0) - x_w(1);			// hier wird entsprechend der Wert aus der vorrangegangenen Iteration des Loesungsvektors verwendet!
-    b_w(M-1) = b_w(M-1) - x_w(M-2);
+    b_w(1) = b_w(1) + T_0;			// hier wird entsprechend der Wert aus der vorrangegangenen Iteration des Loesungsvektors verwendet!
+    b_w(M-2) = b_w(M-2) + T_L;
 
 
     // debug: Check ob die Vektoren richtig aussehen

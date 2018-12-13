@@ -1,13 +1,21 @@
 - Was ist bei meinem Code falsch? Ich habe mMn alles richtig gemacht. Wo liegt mein Fehler?
+	???
+
 
 - Was macht =default bei Klassen? 
+	
 
 - Warum verwende ich die Compiler-Direktiven um mehrfaches Einbinden zu verhindern? 
+	Compile Zeit wird schneller!
+	Weiteres? 
+
 
 - Frage zu []-Operator bei Arrays?  
+	
+
 
 - Muss delete in Public stehen? Da quasi aufgerufen wird wenn out of scope
-
+	Destruktor muss public sein, sonst kann von außen nicht drauf zugegriffen werden
 
 
 

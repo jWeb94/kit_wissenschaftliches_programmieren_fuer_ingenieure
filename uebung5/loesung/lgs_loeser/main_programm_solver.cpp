@@ -5,6 +5,9 @@
 #include "matrix_funcs.h"
 #include "solver_funcs.h"
 
+// my includes
+#include <cmath>
+
 using namespace std;
 
 
@@ -57,7 +60,8 @@ int main(int argc, char* argv[]){
 
     // ueberpruefe die Loesung 
 
-    (A*x).print("[A*x]");
+    (A*x).print("[A*x]");   // Aufruf der Print-Methode des von der Berechnung zurueck gelieferten Vector-Objekts.
+    						// Deshalb braucht man die Klammern!
 
     write_vector_to_file(x,"cg_test.dat");
 
@@ -105,10 +109,10 @@ int main(int argc, char* argv[]){
 
     double const h = L/double(M-1); //Schrittweite
 
-    double const c = h*h/k; //h^2/k
+    double const c = h*h/k; //h^2/k -> delta_L^2/k
 
     //Aufstellen LGS: A_w*x_w = b_w
-    //Anlegen der notwenigen Vektoren und Matrix
+    //Anlegen (Deklarieren) der notwenigen Vektoren und Matrix
 
     Vector x_w(M);
     Vector b_w(M);
@@ -117,28 +121,93 @@ int main(int argc, char* argv[]){
     Vector a_w(M); //Hilfsvariable a_w(i) = i^2*h^2/L^2;
 
     //TODO: Initialisierung a_w
-
+    for (int i = 0; i < M; i++){ // bis M-1, da wir bei 0 Anfangen und M Stuetzstellen haben
+    	// Konventionskoeffizient
+    	//a_w.dataPtr[i] = (double(i)*double(i)*h*h)/(L*L);
+    	a_w(i) = pow(double(i), 2.0)*pow(h, 2.0)/pow(L, 2.0); // calculation with cmath~pow ist power of 1. Argument zu ^2.Argument
+    }
 
     //TODO: Initialisierung A_w
 
+    A_w.operator =(0);
+    // entspricht A_w = 0;
+
+    // initialisierung mit Operator fuer 'fill with same value' aus der Matrix-Klasse!
+    /* Alles mit 0 initialisieren, damit man sich im Anschluss nur noch um die interessanten Matrixelemente
+     * kuemmern muss und keine Elemente unbeschrieben sind. Das wuerde zu einem Zugriffsfehler fuerhen! (?)
+     * -> TODO: Probiere ohne die 0 initialisierung aus, wenn es laeuft!
+     */
+
 
     //TODO: Kopplungsterme in Matrix schreiben: nur "innere Knoten werden betrachtet
+    for (int j = 1; j < M-1; j++){
+    	// j=1, da wir die Nullte Zeile ignorieren. Dort steht in der urspruenglichen Matrix nichts drin!
+    	// und j<M-2, da wir unten an der Matrix auch die Randbedingung geltend haben.
+    	A_w(j, j+1) = -1;
+    	A_w(j, j) = 2 + a_w(j)*c; // Diagonalelemente
+    	A_w(j, j-1) = -1;
+    }
 
 
     //TODO: Knoten 0 und Knoten M-1 : Randbedingung werden eingebaut
 
-    
+    for (int k = 1; k < M; k++){
+    	b_w(k) = a_w(k) * T_e * c;
+    	// debug
+    	//std::cout << "b_w of k = " << k << " is: " << b_w(k) << std::endl;
+    }
+
+    // Durch die Direclet-Randbedingung gegeben
+    b_w(0) = 0;
+    b_w(M-1) = T_L;
+
     //TODO: A_w muss symmetrisch sein: Anpassen der Matrix A_w und rechten Seite b_w
 
+    	/*
+    	 * vgl handschriftliche Rechnung. Ich muss die Randbedingungen anpassen, sodass eine symetische Matrix entsteht. Dafuer muessen -1 auf Element [0][1] und [M-1][M-2] der Systemmatrix A_w
+    	 */
+    A_w(0, 1) = -1;
+    A_w(M-1, M-2) = -1;
+    
+    // TODO: Das geht fuer den direkten Loeser (LU-Zerlegung) nicht!)
+    b_w(0) = b_w(0) - x_w(1);			// hier wird entsprechend der Wert aus der vorrangegangenen Iteration des Loesungsvektors verwendet!
+    b_w(M-1) = b_w(M-1) - x_w(M-2);
+
+
+    // debug: Check ob die Vektoren richtig aussehen
+    std::cout << "A_w: " << std::endl;
+    A_w.print();
+    std::cout << "b_w: " << std::endl;
+    b_w.print();
+    std::cout << "a_w: (Hilfsvariable fuer den Konvektionskoeffizienten)" << std::endl;
+    a_w.print();
 
     //TODO: Anfangswerte x_w0 (best guess): z.B. lineare Interpolation
 
+    Vector x_w0(M); // Deklariere Anfangswerte-Vektor fuer den Iterativen Loeser
+    // Beschriebe diesen mit Anfangswerten
+    for (int l = 0; l < M; l++){
+    	x_w0(l) = l*(double(T_L)-double(T_0))/(double(L))+T_0; // Geradengleichung mit Anfangs- und Endpunkt T_0 bzw T_L
+    }
+
+    // debug
+    std::cout << "Start-Loesungsvektor fuer den Iterativen CG-Solver x_w0: " << std::endl;
+    x_w0.print();
 
     //TODO: Loesung mit CG-Solver
 
+    Vector lsgVectorCG(M);
+    lsgVectorCG = cg_solve(x_w0, A_w, b_w);
+    lsgVectorCG.print("CG-Loesungsvektor: ");
+
+    write_vector_to_file(lsgVectorCG,"cg_result.dat");
 
     //TODO: Loesung mit LU-Solver:
 
+    Vector lsgVectorLU(M);
+    lsgVectorLU = lu_solve(A_w, b_w);
+    lsgVectorLU.print("LU-Loesungsvektor: ");
+    write_vector_to_file(lsgVectorLU,"lu_result.dat");
 
 
     return 0;

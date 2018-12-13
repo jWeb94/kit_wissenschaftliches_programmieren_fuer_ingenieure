@@ -1,0 +1,59 @@
+- Was ist bei meinem Code falsch? Ich habe mMn alles richtig gemacht. Wo liegt mein Fehler?
+
+- Was macht =default bei Klassen? 
+
+- Warum verwende ich die Compiler-Direktiven um mehrfaches Einbinden zu verhindern? 
+
+- Frage zu []-Operator bei Arrays?  
+
+- Muss delete in Public stehen? Da quasi aufgerufen wird wenn out of scope
+
+
+
+
+
+
+
+
+
+- Wofür steht das nachgelagerte const bei den Lese-Operatoren der Vector-Klasse in Übung 5?
+	Das bedeutet, dass ich das mit der Methode aufgerufene Objekt nicht verändern kann. Effektiv ist 		das nur teil der Constant Correctness. Es stellt sicher, dass beim Weiterverarbeiten im Code 		keine falsche Verwendung der so definierten Methoden auftritt. Mach den Code zuverlässiger. Hat 	aber erstmal keine direkte Funktion.	
+
+	Warum gebe ich bei einem Schreib-Operator ein Referenzobjekt zurück?
+		Das ist C++-Standart für Schreiboperatoren
+
+	Wie wird unterschieden, welche Methode aufgerufen wird? Ich habe die selben Übergabeparameter. 		Daran kann es also nicht fest gemacht werden.  
+		Compiler erkennt, was auf LHS des Zuweisungsoperators steht und linkt anhand des 			Datentyps auf der LHS und dem Rückgabetyp des überladenen Operators, welche 			Operatorfunktion gelinkt (und damit an dieser Stelle ausgeführt) werden muss
+
+
+- Musterlösung für die Frage mit dem Variablenzugriff? Wie kann auf die Membervariablen von Vector zugegriffen werden?
+	Eigentlich kann nur mit dem operator() auf Variablen lesend oder schreiben zugegriffen werden. 
+	Alternativ lassen sich Alle auf einmal printen!
+
+
+________________________________________________
+
+Wichtig:
+
+- Aus was bestehen Klassen?
+	Konstruktoren, Destruktoren, Membervariablen, Member-Functions
+- static-Attribut für Membervariablen: Wir einmal initialisiert und liegt im Hauptspeicher des Programms (habe ich in der VL gefragt), also nicht auf Heap oder Stack. Sie ist dann für alle Instanzen der Klasse gleich->Referenz auf das SELBE Objekt im Speicher
+
+- Allgemeines zu Operatoren: 
+	* Für die Grunddatentypen werden die üblichen Operatoren generisch vom Compiler implizit 		  definiert. Also das Rechnen mit Membervariablen ist möglich!
+			
+			sum_x = a.x + b.x; // Summe des x-Attributs der Klassen a und b   
+	
+	* Werden Pointer in den Membervariablen gespeichert (zB wenn ein Array auf dem Heap für das Objekt erstellt wird), dann muss ich die Operatoren (inklusive Konstruktoren/Destruktoren) selbst schreiben/überarbeiten, damit die Funktionalitäten gewährleistet sind!
+		~> Insbesondere bem Kopierkonstuktor ist das gefährlich, da beim Standart-Kopier-Konstruktor die Adresse der Membervariable einer anderen Instanz referenziert werden würde. Dadurch zeigen zwei Pointer auf die selbe Stelle im Speicher. Wird jetzt das Objekt von einer Instanz gelöscht kommt es mit hoher Wahrscheinlichkeit zu Fehlern, da der Wert dann überschrieben werden kann.   
+
+- Wenn ich auf Klassenvariablen zugreifen will, muss ich nach (überladenen) Operatoren oder getter-/setter-Methoden schauen, denn ich kann von außerhalb der Klasse nicht auf private Membervariablen zugreifen! 
+
+
+
+-> Konditionierung bei Matrizen: 
+	Die ganze Gleichung wird dadurch verändert!
+	
+	Dadurch werden Eigenwerte so angepasst, dass die 'Höhenlinien' gleichmäßiger sind. Dadurch wird 	die numerische Berechnung stabiler. Verweiß auf Mathematik~nicht in VL 
+
+

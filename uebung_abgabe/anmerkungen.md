@@ -4,11 +4,11 @@
 
 ***Aufgabe 1***
 - _ToDo_:
-        1: Klasse erstellen und Operatoren überladen
-        2: Make-File erstellen
-        3: *Testprogramm* verwenden (!), um die Richtigkeit des Codes zu überprüfen
-        4: (Eigene Aufgabe) Gegenchecken mit Matlab
-        5: Dokumentation in Lösungs-PDF in Operatorschreibweise
+        1: Klasse erstellen und Operatoren überladen                                  ***DONE***
+        2: Make-File erstellen                                                        ***DONE***
+        3: *Testprogramm* verwenden (!), um die Richtigkeit des Codes zu überprüfen   ***DONE***
+        4: (Eigene Aufgabe) Gegenchecken mit Matlab                                   ***DONE***
+        5: Dokumentation in Lösungs-PDF in Operatorschreibweise + Code aufräumen und rein kopieren                       ***TODO!!!***
 
 ***Aufgabe 2***
 
@@ -18,6 +18,8 @@
         3: Programm aufrufen mit den entsprechenden Übergabeparametern. Diese sind in .dat-Dateien gegeben. Sinnvoller Weise kann man hier ein Shell-Skript einsetzen!
         4: Visualisierung mit Gnuplot entsprechend der Anleitung
 
+***[Aufgabe 3 - Dokumentation]***
++ Dokumentation anhand der Vorgaben!
 
 #### Dokumentation
 

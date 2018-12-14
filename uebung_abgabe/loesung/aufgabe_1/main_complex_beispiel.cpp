@@ -11,6 +11,12 @@ void output_my_cplx(const MyComplex &c,const std::string txt){
 
 int main(){
     MyComplex z1 {2.,7.};
+    /*
+    // so kann man auch den Konstruktor aufrufen?!
+    // debug
+    cout << "these are the components of z1: " << endl;
+    z1.printComponents();
+    */
     MyComplex z2 {42.,-9};
     MyComplex z3 {-11.,19.};
     MyComplex z4,z5,z6,z7,z8,z9;

@@ -46,3 +46,5 @@
   + Constant-Correctness: Schränke die Rückgabe so weit wie möglich ein! Also setze die zurück gelieferten Objekte auf _const_!
 
 + Schreibe ich einen Destruktor in der .hpp, lasse ich ihn also nicht generisch vom Compiler erstellen, so *MUSS* (!) ich ihn auch in der .cpp schreiben, ansonsten mäckert der Compiler!
+
++ Makefile-Dependencys: Alle Objektdateien haengen nur von der eigenen .cpp ab. Ansonsten sind sie nur von den .h Dateien der anderen SRCs abhaengig!

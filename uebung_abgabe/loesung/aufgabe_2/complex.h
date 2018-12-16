@@ -26,12 +26,17 @@ public:
     // Zuweisungsoperatoren
   MyComplex & operator=(const MyComplex & assignmentComplex);  			// Entspricht Kopieroperator
 
+  	  // zusaetzliche Rechenoperatoren fuer Aufgabe 2
+  MyComplex operator^(const int a);
 
   // Methoden
-    // Getter-Methoden
+  	  // Getter-Methoden
   const double norm() const;
   const double real() const;
   const double imag() const;
+  	  // setter Methoden fuer definierte Schnittstelle ~ in A2 wichtig, um nicht immer eine neue komplexe Zahl zu deklarieren
+  void setRe(double newRe);
+  void setIm(double newIm);
 
   void printComponents(); // debug purpose
     //Setter-Methoden

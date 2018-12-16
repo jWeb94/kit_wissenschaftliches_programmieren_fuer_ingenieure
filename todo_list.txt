@@ -7,3 +7,5 @@ TO-DO-List Wissenschaftliches Programmieren
 - Vollziehe den Mustercode von Uebung3 game_of_life nach, wie die periodischen Randbedingungen umgesetzt werden und allgemein, wie der Code geschrieben ist.
 
 - Uebung 4 ~ Zusatzaufgabe (Shell Skript für den Mittelwert über alle Anfangspopulationen schreiben; Template ist schon erstellt)
+
+- S. 141/142 -> Nachvollziehen/Nachprogrammieren, insbesondere was es mit #include<memory> auf sich hat

@@ -94,6 +94,14 @@ MyComplex & MyComplex::operator-(){
 	return *this;
 };
 
+// zusaetzliche Operatoren fuer Aufgabe 2
+MyComplex MyComplex::operator^(int a){
+	// Das waere eleganter mit einer template programmierung
+	this->x = pow(this->x, double(a));
+	this->y = pow(this->y, double(a));
+	return *this;
+};
+
 
 /*
  * Methoden
@@ -112,6 +120,14 @@ const double MyComplex::real() const{
 const double MyComplex::imag() const{
   // Imaginäranteil von z=x+iy ist y
   return this->y;
+};
+
+void MyComplex::setRe(double newRe){
+	this->x = newRe;
+};
+
+void MyComplex::setIm(double newIm){
+	this->y = newIm;
 };
 
 void MyComplex::printComponents(){

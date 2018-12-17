@@ -74,6 +74,10 @@
 
 #### Allgemeines
 
++ TIPP beim Implementieren von Klassen (insbesondere beim Rechnen): 
+	+ Alle Fälle abdecken! Nicht nur die benötigten Rechenregeln implementieren, sondern alle
+	+ Achtung bei Berechnungen wie ^x: Es müssen alle Fällle abgedeckt sein, nicht nur ^2!
+
 + Variablen _Definition_ :
 	+ Anforderung des Speicherplatz, falls nicht geüegend Platz alloziert werden kann, wird eine Exception ausgelöst!
 	+ Beiispiel: int i; 

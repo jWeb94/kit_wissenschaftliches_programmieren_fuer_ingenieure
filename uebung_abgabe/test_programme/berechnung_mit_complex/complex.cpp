@@ -140,7 +140,7 @@ MyComplex MyComplex::operator^(const int a){
 
 const double MyComplex::norm() const{
 	// |z|=sqrt(x^2+y^2)
-	return sqrt(this->x*this->x + this->y*this->y); //sqrt(pow(this->x, 2.)+pow(this->y, 2.));
+	return sqrt(pow(this->x, 2.)+pow(this->y, 2.));
 };
 
 const double MyComplex::real() const{

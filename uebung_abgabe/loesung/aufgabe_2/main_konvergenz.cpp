@@ -54,6 +54,11 @@ int main (){
 
 	cout << "Vielen Dank fuer die Eingaben. Das Programm startet jetzt!" << endl;
 
+
+	// Berechnungen vorab
+	delta_x = (x_M-x_0)/double(N_xmax);
+	delta_y = (y_M-y_0)/double(N_ymax);
+
 	// Resultatvariablen
 	int n_iter_temp;
 	ofstream resultStream;			// erstelle Stream-Objekt, um in den Cases ein File zu referenzieren und mittels des Stream-Objekts zu beschreiben
@@ -68,12 +73,14 @@ int main (){
 			// oeffne Ergebnisdatei
 			resultStream.open(nameResult); // benoetigt #include<fstream>
 			// Iteriere ueber alle Anfangsbedingungen der Folge
-			for (int i = 0; i < N_xmax; i++){		// Schleife, um alle x-Komponenten durch zu gehen
-				for (int j = 0; j < N_ymax; j++){	// Schleife, um alle y-Komponenten durch zu gehen
+			for (int i = 0; i <= N_xmax; i++){		// Schleife, um alle x-Komponenten durch zu gehen
+				for (int j = 0; j <= N_ymax; j++){	// Schleife, um alle y-Komponenten durch zu gehen
 						// Berechnnung
-					z_0.setRe(x_0+delta_x*i);
-					z_0.setIm(x_0+delta_y*j);
+					z_0.setRe(x_0+delta_x*double(i));
+					z_0.setIm(y_0+delta_y*double(j));
+
 					n_iter_temp = calcNumConvergence(z_0, c_0, n, R_c, maxIterations); // Der wird immer ueberschrieben, deshalb muss ich ihn nicht zurueck setzen!
+
 						// Schreibe in File
 							// Sicherheitsabfrage, ob File noch geoeffnet ist:
 					if (resultStream.is_open())
@@ -85,6 +92,12 @@ int main (){
 						cout << "Es ist ein Fehler aufgetreten. Das Programm wird beendet. Bitte ueberpruefen Sie den Quellcode!" << endl;
 						exit(0);
 					}
+					/*
+					 * debug, um nur die ersten Iterationen zu sehen!
+					if (j == 3){
+						exit(0);
+					}
+					*/
 				}
 			}
 			resultStream.close(); // Schließe Datei - das Stream-Objekt bleibt erhalten
@@ -98,11 +111,11 @@ int main (){
 			MyComplex c_0(x_0, y_0); 			// c liegt im gegebenen Wertebereich -> fange am ll-Ende an!
 
 			resultStream.open(nameResult);
-			for (int k = 0; k < N_xmax; k++){		// Schleife, um alle x-Komponenten durch zu gehen
-				for (int l = 0; l < N_ymax; l++){	// Schleife, um alle y-Komponenten durch zu gehen
+			for (int k = 0; k <= N_xmax; k++){		// Schleife, um alle x-Komponenten durch zu gehen
+				for (int l = 0; l <= N_ymax; l++){	// Schleife, um alle y-Komponenten durch zu gehen
 						// Berechnnung
-					c_0.setRe(x_0+delta_x*k);
-					c_0.setIm(x_0+delta_y*l);
+					c_0.setRe(x_0+delta_x*double(k));
+					c_0.setIm(x_0+delta_y*double(l));
 					n_iter_temp = calcNumConvergence(z_0, c_0, n, R_c, maxIterations);
 						// Schreibe in File
 					if (resultStream.is_open())
@@ -115,6 +128,7 @@ int main (){
 						exit(0);
 					}
 				}
+				resultStream << endl; // Leerzeichen zwischen allen spalten
 			}
 			resultStream.close();
 			break;
@@ -126,11 +140,11 @@ int main (){
 			MyComplex z_0(reInsert, imInsert); 	// vgl Aufgabenstellung -> man darf die Uebergaben fuer c_0 verwenden!
 			MyComplex c_0(x_0, y_0); 			// c liegt im gegebenen Wertebereich -> fange am ll-Ende an!
 			resultStream.open(nameResult);
-			for (int m = 0; m < N_xmax; m++){		// Schleife, um alle x-Komponenten durch zu gehen
-				for (int n = 0; n < N_ymax; n++){	// Schleife, um alle y-Komponenten durch zu gehen
+			for (int m = 0; m <= N_xmax; m++){		// Schleife, um alle x-Komponenten durch zu gehen
+				for (int n = 0; n <= N_ymax; n++){	// Schleife, um alle y-Komponenten durch zu gehen
 						// Berechnnung
-					c_0.setRe(x_0+delta_x*m);
-					c_0.setIm(x_0+delta_y*n);
+					c_0.setRe(x_0+delta_x*double(m));
+					c_0.setIm(x_0+delta_y*double(n));
 					n_iter_temp = calcNumConvergence(z_0, c_0, n, R_c, maxIterations);
 						// Schreibe in File
 					if (resultStream.is_open())
@@ -158,12 +172,40 @@ int main (){
 
 
 int calcNumConvergence(MyComplex z_i_1, MyComplex c, int n, double r_c, size_t n_max){
+
+	using namespace std;
+
 	// Bestimme die Anzahl an Iterationen, bis der Konvergenzradius verlassen wird, oder n_max fuer den Fall, dass die uebergebene Folge konvergiert
-	MyComplex resultIteration_i(z_i_1);
+	MyComplex resultIteration_i = z_i_1;
+
+	/*
+	//debug
+	cout << "n is: " << endl;
+	cout << n << endl;
+
+	cout << "z_0 is: " << endl;
+	resultIteration_i.printComponents();
+
+	cout << "r is: " << r_c << endl;
+
+	cout << "c is: " << endl;
+	c.printComponents();
+	*/
+
 	for (size_t i = 0; i < n_max; i++){
+		// c stimmt, Berechnung stimmt!
 		resultIteration_i = (resultIteration_i^n) + c; // verrechnen der komplexen Zahlen -> ACHTUNG: der ^-Operator musste fuer diese Aufgabe noch ueberladen werden!
+		/*
+		cout << "z_temp is: " << endl;
+		resultIteration_i.printComponents();
+
+		cout << "norm is: " << resultIteration_i.norm() << endl;
+		*/
+
+		//resultIteration_i.printComponents();
 		if (resultIteration_i.norm() >= r_c ){
 			return i; // Abbruchbedingung ~ wenn die Komplexe Zahl außerhalb des Konvergenzradius liegt, dann konvergiert die Folge nicht!
+			//cout << "Abbruchbedinung erreicht" <<endl;
 		}
 	}
 	return n_max;

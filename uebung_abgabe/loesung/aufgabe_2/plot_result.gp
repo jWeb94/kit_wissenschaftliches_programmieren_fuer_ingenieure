@@ -7,6 +7,9 @@ do for [ii=1:3:1] {
   set term jpeg
   set output resultName
 
+  set xrange[0:750]
+  set yrange[0:500]
+
   spl file u 1:2:3 with image
 
   if (ii < 3) {

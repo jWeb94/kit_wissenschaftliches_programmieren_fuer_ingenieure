@@ -115,7 +115,7 @@ int main (){
 				for (int l = 0; l <= N_ymax; l++){	// Schleife, um alle y-Komponenten durch zu gehen
 						// Berechnnung
 					c_0.setRe(x_0+delta_x*double(k));
-					c_0.setIm(x_0+delta_y*double(l));
+					c_0.setIm(y_0+delta_y*double(l));
 					n_iter_temp = calcNumConvergence(z_0, c_0, n, R_c, maxIterations);
 						// Schreibe in File
 					if (resultStream.is_open())
@@ -144,7 +144,7 @@ int main (){
 				for (int n = 0; n <= N_ymax; n++){	// Schleife, um alle y-Komponenten durch zu gehen
 						// Berechnnung
 					c_0.setRe(x_0+delta_x*double(m));
-					c_0.setIm(x_0+delta_y*double(n));
+					c_0.setIm(y_0+delta_y*double(n));
 					n_iter_temp = calcNumConvergence(z_0, c_0, n, R_c, maxIterations);
 						// Schreibe in File
 					if (resultStream.is_open())

@@ -9,6 +9,12 @@
 \usepackage{xcolor}
 \usepackage{moreverb}
 \usepackage{minted}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\lhead{Jens Weber}
+\rhead{Matr.-Nr.: 1851194}
+\fancypagestyle{plain}{\lhead{Jens Weber}, \rhead{Matr.-Nr.: 1851194}}
 
 \graphicspath{ {images/} } % sage Latex, dass es die Bilder unter dem Ordner 'images' im aktuellen Ordner findet!
 \lstset { %
@@ -16,10 +22,12 @@
     backgroundcolor=\color{black!5}, % set backgroundcolor
     basicstyle=\footnotesize,% basic font setting
 } % fuer C++ anzeigen
+%\ihead{Jens Weber}
+%\ohead{Matr.-Nr.: 1851194}
 
   % Titel-Einstellungen
 \title{Code Dokumentation - Wissenschaftliches Programmieren für Ingenieure im Wintersemester 2018/2019}
-\author{Jens Weber - Matrikel Nummer: 1851194}
+\author{Jens Weber - Maschinenbau - Matr.-Nr.: 1851194}
 \date{18.12.2018}
 
 
@@ -38,7 +46,7 @@
 \section{Verwendung des Codes}\label{sec:verwendungA1}
 
 Der für diese Aufgabe verwendete Code ist in \ref{sec:codeA1} zu finden. Er lässt sich mit dem Makefile kompilieren.
-Nach dem das kompilieren erfolgreich abgeschlossen ist, startet man das Programm mit:
+Nach dem das Kompilieren erfolgreich abgeschlossen ist, startet man das Programm mit:
 \begin{lstlisting}[language=bash]
   $ ./aufgabe_1
 \end{lstlisting}
@@ -87,7 +95,7 @@ $z_9 = -z_1 + z_2$ & $40 - 16*i$ \\
 \subsection{Code in Operatorschreibweise}
 
 Entsprechend \testbf{Aufgabenteil B} wird hier der Code zur Berechnung der Ergebnisse in Operatorschreibweise als Quellcode aufgelistet. \\
-Eine ausführbares Programm findet sich im Ordner \textit{aufgabe\_1} mit dem Namen \textit{main\_complex\_operator\_schreibweise.cpp}
+Ein ausführbares Programm findet sich im Ordner \textit{aufgabe\_1} mit dem Namen \textit{main\_complex\_operator\_schreibweise.cpp}
 
 
 \begin{lstlisting}
@@ -103,7 +111,7 @@ z9.operator=(z1.operator-().operator+(z2));
 
 \section{Code}\label{sec:codeA1}
 
-Im Folgenden ist der komplette Code, inklusive Makefile zu Aufgabe 1 zu finden.
+Im Folgenden ist der komplette Code inklusive Makefile zu Aufgabe 1 zu finden.
 
 \textbf{complex.h: }
 \inputminted[autogobble]{C++}{complex_a1.h}
@@ -306,7 +314,7 @@ Komplexe Konstante c0 & $(0, 0)$ \\
 
 \section{Code}\label{sec:codeA2}
 
-Hier wird der Code für Aufgabe 2, inklusiver des Makefiles und der Shell, bzw Gnuplot Skripte aufgeführt: \\
+Hier wird der Code für Aufgabe 2 inklusive des Makefiles und der Shell bzw. Gnuplot Skripte aufgeführt: \\
 \\
 
 \textbf{complex.h: }

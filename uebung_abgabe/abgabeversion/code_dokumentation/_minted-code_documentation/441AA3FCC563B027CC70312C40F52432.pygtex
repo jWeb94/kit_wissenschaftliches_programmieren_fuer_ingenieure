@@ -1,29 +1,144 @@
 \begin{Verbatim}[commandchars=\\\{\}]
-\PYG{c+cp}{\PYGZsh{} Variablen}
-\PYG{n}{PROG} \PYG{o}{=} \PYG{n}{aufgabe\PYGZus{}1}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include}\PYG{c+cpf}{\PYGZlt{}cmath\PYGZgt{}}
 
-\PYG{n}{FLAGS} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{O2}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}complex.h\PYGZdq{}}
 
-\PYG{n}{CC} \PYG{o}{=} \PYG{n}{g}\PYG{o}{++}
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
 
-\PYG{n}{SRC} \PYG{o}{=} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{main\PYGZus{}complex\PYGZus{}operator\PYGZus{}schreibweise}\PYG{p}{.}\PYG{n}{cpp}
+\PYG{c+c1}{// Construktoren}
+\PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{MyComplex}\PYG{p}{()\PYGZob{}}
+  \PYG{c+c1}{// Standartkonstruktor}
+\PYG{p}{\PYGZcb{};}
 
-\PYG{n}{OBJ} \PYG{o}{=} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n+nl}{SRC}\PYG{p}{:.}\PYG{n}{cpp}\PYG{o}{=}\PYG{p}{.}\PYG{n}{o}\PYG{p}{)}
+\PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{MyComplex}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{xVal}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{yVal}\PYG{p}{)\PYGZob{}}
+  \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{=} \PYG{n}{xVal}\PYG{p}{;}
+  \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{=} \PYG{n}{yVal}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
 
-\PYG{c+cp}{\PYGZsh{} Targets}
-\PYG{n+nl}{all}\PYG{p}{:} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{SRC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}
+\PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{MyComplex}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{complexNumber}\PYG{p}{)\PYGZob{}}
+  \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{=} \PYG{n}{complexNumber}\PYG{p}{.}\PYG{n}{x}\PYG{p}{;}
+  \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{=} \PYG{n}{complexNumber}\PYG{p}{.}\PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
 
-\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}\PYG{o}{:} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{OBJ}\PYG{p}{)}
-	\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{CC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{FLAGS}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{OBJ}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{n}{o} \PYG{err}{\PYGZdl{}@}
+\PYG{c+c1}{// Destruktor}
+\PYG{n}{MyComplex}\PYG{o}{::\PYGZti{}}\PYG{n}{MyComplex}\PYG{p}{()\PYGZob{}}
+\PYG{p}{\PYGZcb{};}
 
 
-\PYG{o}{\PYGZpc{}}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:}\PYG{o}{\PYGZpc{}}\PYG{p}{.}\PYG{n}{cpp}
-	\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{CC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{FLAGS}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{n}{c} \PYG{err}{\PYGZdl{}}\PYG{o}{\PYGZlt{}}
+\PYG{c+c1}{// Operatoren}
 
-\PYG{n+nl}{clean}\PYG{p}{:}
-	 \PYG{n}{rm} \PYG{o}{*}\PYG{p}{.}\PYG{n}{o} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}																
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{additionComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{n}{MyComplex} \PYG{n}{resultAdditionCompl}\PYG{p}{;}
+	\PYG{n}{resultAdditionCompl}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{+} \PYG{n}{additionComplex}\PYG{p}{.}\PYG{n}{real}\PYG{p}{();}
+	\PYG{n}{resultAdditionCompl}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{+} \PYG{n}{additionComplex}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{();}
+	\PYG{k}{return} \PYG{n}{resultAdditionCompl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
 
-\PYG{c+cp}{\PYGZsh{} deps}
-\PYG{n}{complex}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{h}
-\PYG{n}{main\PYGZus{}complex\PYGZus{}beispiel}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:} \PYG{n}{main\PYGZus{}complex\PYGZus{}beispiel}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{h}
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{additionConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{n}{MyComplex} \PYG{n}{resultAddConst}\PYG{p}{(}\PYG{o}{*}\PYG{k}{this}\PYG{p}{);}
+	\PYG{n}{resultAddConst}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{resultAddConst}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{additionConstant}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{resultAddConst}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex}\PYG{o}{\PYGZam{}} \PYG{n}{subtractionComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{n}{MyComplex} \PYG{n}{resultSubtractionCompl}\PYG{p}{;}
+	\PYG{n}{resultSubtractionCompl}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{n}{subtractionComplex}\PYG{p}{.}\PYG{n}{real}\PYG{p}{();}
+	\PYG{n}{resultSubtractionCompl}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{\PYGZhy{}} \PYG{n}{subtractionComplex}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{();}
+	\PYG{k}{return} \PYG{n}{resultSubtractionCompl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{subtractionConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{n}{MyComplex} \PYG{n}{resultSubConst}\PYG{p}{(}\PYG{o}{*}\PYG{k}{this}\PYG{p}{);}
+	\PYG{n}{resultSubConst}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{resultSubConst}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{subtractionConstant}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{resultSubConst}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex}\PYG{o}{\PYGZam{}} \PYG{n}{multiplicationComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+	\PYG{n}{MyComplex} \PYG{n}{resultMultiplCompl}\PYG{p}{;}
+	\PYG{n}{resultMultiplCompl}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{o}{*}\PYG{n}{multiplicationComplex}\PYG{p}{.}\PYG{n}{real}\PYG{p}{()}
+                          \PYG{o}{\PYGZhy{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{o}{*}\PYG{n}{multiplicationComplex}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{();}
+	\PYG{n}{resultMultiplCompl}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{o}{*}\PYG{n}{multiplicationComplex}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{()}
+                          \PYG{o}{+}\PYG{n}{multiplicationComplex}\PYG{p}{.}\PYG{n}{real}\PYG{p}{()}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{resultMultiplCompl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{multiplicationConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{n}{MyComplex} \PYG{n}{resultMultiplicationConst}\PYG{p}{(}\PYG{o}{*}\PYG{k}{this}\PYG{p}{);}
+	\PYG{n}{resultMultiplicationConst}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{resultMultiplicationConst}\PYG{p}{.}\PYG{n}{x}
+                                \PYG{o}{*}\PYG{n}{multiplicationConstant}\PYG{p}{;}
+	\PYG{n}{resultMultiplicationConst}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{resultMultiplicationConst}\PYG{p}{.}\PYG{n}{y}
+                                \PYG{o}{*}\PYG{n}{multiplicationConstant}\PYG{p}{;}
+	\PYG{k}{return} \PYG{n}{resultMultiplicationConst}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{/}\PYG{p}{(}\PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{complexDivisionNum}\PYG{p}{)} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+	\PYG{n}{MyComplex} \PYG{n}{divisionResult}\PYG{p}{;}
+	\PYG{n}{divisionResult}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}
+                        \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)} \PYG{o}{/} \PYG{p}{(}\PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x}
+                          \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}
+                            \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+	\PYG{n}{divisionResult}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x} \PYG{o}{\PYGZhy{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}
+                        \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}\PYG{p}{)} \PYG{o}{/} \PYG{p}{(}\PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x}
+                          \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{x} \PYG{o}{+} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}
+                            \PYG{o}{*} \PYG{n}{complexDivisionNum}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+	\PYG{k}{return} \PYG{n}{divisionResult}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{assignmentComplex}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{=} \PYG{n}{assignmentComplex}\PYG{p}{.}\PYG{n}{real}\PYG{p}{();}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{=} \PYG{n}{assignmentComplex}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{();}
+	\PYG{k}{return} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{()\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{p}{;}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{p}{;}
+	\PYG{k}{return} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{n}{MyComplex} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{k}{operator}\PYG{o}{\PYGZca{}}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{)\PYGZob{}}
+	\PYG{n}{MyComplex} \PYG{n}{resultPow}\PYG{p}{(}\PYG{o}{*}\PYG{k}{this}\PYG{p}{);}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{a} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{a}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)\PYGZob{}}
+			\PYG{n}{resultPow} \PYG{o}{=} \PYG{n}{resultPow} \PYG{o}{*} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+		\PYG{p}{\PYGZcb{}}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{a} \PYG{o}{==} \PYG{l+m+mi}{0}\PYG{p}{)\PYGZob{}}
+		\PYG{n}{resultPow}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;}
+		\PYG{n}{resultPow}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{else}\PYG{p}{\PYGZob{}}
+		\PYG{n}{resultPow} \PYG{o}{=} \PYG{n}{resultPow} \PYG{o}{/} \PYG{o}{*}\PYG{k}{this}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+	\PYG{k}{return} \PYG{n}{resultPow}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+
+\PYG{c+c1}{// Methoden}
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{norm}\PYG{p}{()} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+	\PYG{k}{return} \PYG{n}{sqrt}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{+} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{o}{*}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{p}{);}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{real}\PYG{p}{()} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{k}{return} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{imag}\PYG{p}{()} \PYG{k}{const}\PYG{p}{\PYGZob{}}
+  \PYG{k}{return} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k+kt}{void} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{setRe}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{newRe}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{=} \PYG{n}{newRe}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k+kt}{void} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{setIm}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{newIm}\PYG{p}{)\PYGZob{}}
+	\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{=} \PYG{n}{newIm}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{k+kt}{void} \PYG{n}{MyComplex}\PYG{o}{::}\PYG{n}{printComponents}\PYG{p}{()\PYGZob{}}
+	\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}x: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{x} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}
+	\PYG{n}{cout} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}y: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{y} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
 \end{Verbatim}

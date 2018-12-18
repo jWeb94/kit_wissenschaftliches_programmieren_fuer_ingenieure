@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.6)  18 DEC 2018 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2018.11.6)  18 DEC 2018 19:01
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -690,16 +690,6 @@ C70312C40F52432.pygtex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 5.
  [3]) [4]
-runsystem(python -c "import sys; import textwrap; from io import open; f = open
-(\"complex_a1.cpp\", \"r\", encoding=\"UTF8\"); t = f.read(); f.close(); f = op
-en(\"code_documentation.pyg\", \"w\", encoding=\"UTF8\"); f.write(textwrap.dede
-nt(t)); f.close();")...executed.
-
-runsystem(pygmentize -l C++ -f latex -P commandprefix=PYG -F tokenmerge -o "_mi
-nted-code_documentation/EAA5CA0E919D32EB227B64C19C250517441AA3FCC563B027CC70312
-C40F52432.pygtex" "code_documentation.pyg" )...executed.
-
-
 (./_minted-code_documentation/EAA5CA0E919D32EB227B64C19C250517441AA3FCC563B027C
 C70312C40F52432.pygtex [5
 
@@ -774,30 +764,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 309--311
 
  []
 
-runsystem(python -c "import sys; import textwrap; from io import open; f = open
-(\"complex_a2.h\", \"r\", encoding=\"UTF8\"); t = f.read(); f.close(); f = open
-(\"code_documentation.pyg\", \"w\", encoding=\"UTF8\"); f.write(textwrap.dedent
-(t)); f.close();")...executed.
-
-runsystem(pygmentize -l C++ -f latex -P commandprefix=PYG -F tokenmerge -o "_mi
-nted-code_documentation/1C10D475ADA07AA58ED0153832214F7B441AA3FCC563B027CC70312
-C40F52432.pygtex" "code_documentation.pyg" )...executed.
-
 
 (./_minted-code_documentation/1C10D475ADA07AA58ED0153832214F7B441AA3FCC563B027C
 C70312C40F52432.pygtex [16
 
  <./images/ergebnis3A.jpg>]) [17]
-runsystem(python -c "import sys; import textwrap; from io import open; f = open
-(\"complex_a2.cpp\", \"r\", encoding=\"UTF8\"); t = f.read(); f.close(); f = op
-en(\"code_documentation.pyg\", \"w\", encoding=\"UTF8\"); f.write(textwrap.dede
-nt(t)); f.close();")...executed.
-
-runsystem(pygmentize -l C++ -f latex -P commandprefix=PYG -F tokenmerge -o "_mi
-nted-code_documentation/80E029B8EABD4C5FFC9600AC4D3F6E36441AA3FCC563B027CC70312
-C40F52432.pygtex" "code_documentation.pyg" )...executed.
-
-
 (./_minted-code_documentation/80E029B8EABD4C5FFC9600AC4D3F6E36441AA3FCC563B027C
 C70312C40F52432.pygtex [18
 
@@ -812,24 +783,12 @@ B045395A83D4099.pygtex) [23
 (./_minted-code_documentation/191B425791396B972FB423DA315F5B473C756604A64E8ADF5
 7AA790711966CD9.pygtex) [24
 
-]
-runsystem(rm "_minted-code_documentation/018C1ED4218F1C8B2E664DAFFCD73808441AA3
-FCC563B027CC70312C40F52432.pygtex")...executed.
-
-runsystem(rm "_minted-code_documentation/DEF08ECC4A42F232D7E9331160E8C57D441AA3
-FCC563B027CC70312C40F52432.pygtex")...executed.
-
-runsystem(rm "_minted-code_documentation/E9AFE8C0502F6D9FAE447C1DC425DA02441AA3
-FCC563B027CC70312C40F52432.pygtex")...executed.
-
-runsystem(rm "code_documentation.pyg")...executed.
-
- [25
+] [25
 
 ] (./code_documentation.aux) ) 
 Here is how much of TeX's memory you used:
- 7332 strings out of 493029
- 112914 string characters out of 6136234
+ 7329 strings out of 493029
+ 112722 string characters out of 6136234
  244203 words of memory out of 5000000
  10703 multiletter control sequences out of 15000+600000
  10098 words of font info for 36 fonts, out of 8000000 for 9000

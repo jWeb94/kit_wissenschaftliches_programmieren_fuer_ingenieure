@@ -99,6 +99,7 @@ int main (){
 					}
 					*/
 				}
+				resultStream<<endl;
 			}
 			resultStream.close(); // Schließe Datei - das Stream-Objekt bleibt erhalten
 			break; // damit nicht die nachfolgenden Bloecke ebenfalls danach ausgefuehrt werden und nach diesem case die switch-case abfrage beendet ist
@@ -157,6 +158,7 @@ int main (){
 						exit(0);
 					}
 				}
+				resultStream<<endl;
 			}
 			resultStream.close();
 			break;

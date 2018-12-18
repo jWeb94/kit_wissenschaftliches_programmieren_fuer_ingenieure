@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}ifndef MYCOMPLEXNUM\PYGZus{}}
+\PYG{c+cp}{\PYGZsh{}define MYCOMPLEXNUM\PYGZus{}}
+
+\PYG{k}{class} \PYG{n+nc}{MyComplex}\PYG{p}{\PYGZob{}}
+
+\PYG{k}{public}\PYG{o}{:}
+
+  \PYG{c+c1}{// Konstruktoren}
+  \PYG{n}{MyComplex}\PYG{p}{();}
+  \PYG{n}{MyComplex}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{xVal}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{yVal}\PYG{p}{);}
+  \PYG{n}{MyComplex}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{complexNumber}\PYG{p}{);}
+
+  \PYG{c+c1}{// Destruktoren}
+  \PYG{o}{\PYGZti{}}\PYG{n}{MyComplex}\PYG{p}{();}
+
+  \PYG{c+c1}{// Operatoren}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{additionComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{+}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{additionConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{subtractionComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{subtractionConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{multiplicationComplex}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{*}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{double} \PYG{n}{multiplicationConstant}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{\PYGZhy{}}\PYG{p}{();}
+  	  \PYG{c+c1}{// Fuer Aufgabe 2}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{\PYGZca{}}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{a}\PYG{p}{);}
+  \PYG{k}{const} \PYG{n}{MyComplex} \PYG{k}{operator}\PYG{o}{/}\PYG{p}{(}\PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{complexDivisionNum}\PYG{p}{)} \PYG{k}{const}\PYG{p}{;}
+  \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{k}{operator}\PYG{o}{=}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}} \PYG{n}{assignmentComplex}\PYG{p}{);}
+
+
+  \PYG{c+c1}{// Methoden}
+  	  \PYG{c+c1}{// Getter\PYGZhy{}Methoden}
+  \PYG{k}{const} \PYG{k+kt}{double} \PYG{n+nf}{norm}\PYG{p}{()} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{k+kt}{double} \PYG{n+nf}{real}\PYG{p}{()} \PYG{k}{const}\PYG{p}{;}
+  \PYG{k}{const} \PYG{k+kt}{double} \PYG{n+nf}{imag}\PYG{p}{()} \PYG{k}{const}\PYG{p}{;}
+  	  \PYG{c+c1}{// Setter Methoden}
+  \PYG{k+kt}{void} \PYG{n+nf}{setRe}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{newRe}\PYG{p}{);}
+  \PYG{k+kt}{void} \PYG{n+nf}{setIm}\PYG{p}{(}\PYG{k+kt}{double} \PYG{n}{newIm}\PYG{p}{);}
+
+  \PYG{k+kt}{void} \PYG{n+nf}{printComponents}\PYG{p}{();} \PYG{c+c1}{// zum debuggen}
+
+\PYG{k}{private}\PYG{o}{:}
+  \PYG{c+c1}{// Membervaribalen: z = x+iy}
+  \PYG{k+kt}{double} \PYG{n}{x}\PYG{p}{;}
+  \PYG{k+kt}{double} \PYG{n}{y}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\PYG{c+cp}{\PYGZsh{}endif}
+\end{Verbatim}

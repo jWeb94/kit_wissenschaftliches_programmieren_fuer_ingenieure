@@ -1,0 +1,28 @@
+# Variablen
+PROG = aufgabe_2
+
+FLAGS = -O2
+
+CC = g++
+
+SRC = complex.cpp main_konvergenz.cpp
+
+OBJ = $(SRC:.cpp=.o)
+
+# Targets
+all: $(SRC) $(PROG)
+
+
+$(PROG): $(OBJ)
+	$(CC) $(FLAGS) $(OBJ) -o $@
+
+
+%.o:%.cpp
+	$(CC) $(FLAGS) -c $<
+
+clean:
+	 rm *.o $(PROG)																
+
+# deps
+complex.o: complex.cpp complex.h
+main_konvergenz: main_konvergenz.cpp complex.h

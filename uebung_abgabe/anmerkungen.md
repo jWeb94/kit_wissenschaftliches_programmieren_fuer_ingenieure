@@ -47,6 +47,11 @@
 
 ***Code:***
 
++ const MyComplex MyComplex::operator+(double a) const{}
+	+ das nachgestellte const hinter dem (double a) sagt aus, dass das aufrufende Objekt der Methode nicht verändert werden kann. 
+	+ Dem entsprechend wird das const nicht bei Methoden/Operatoren nachgestellt, die das Objekt selbst verändern, wie bspw setter-Methoden, Zuweisungsoperatoren oder Konstruktoren
+	+ das const MyComplex sagt aus, dass die Rückgabe der Methode vom Typ MyComplex ist und das zurück gegebene Objekt nicht mehr verändert werden kann. 
+
 + die <Klasse>.cpp darf keines Falls in die .h eingebunden werden! Sonst baut er nicht/kann die Klasse nicht im .cpp - File finden!
 
 + Alle Operatoren oder Methoden, die das Objekt mit dem sie aufgerufen werden verändern geben eine Referenz als Rückgabeobjekt zurück. Alle Operatoren und Methoden, die dem Rechnen dienen, geben das entsprechende Objekt zurück.
@@ -63,6 +68,9 @@
 	+ Wenn ich ein Stream-Objekt erstelle ist diesem erstmal kein File zugeordnet. Erst wenn ich <Objektinstanz>.open(<path/to/filename>) [bzw nur Filename übergaben, wenn das File sich im aktuellen Ordner befindet/befinden soll nach der Erstellung] sage, wird das entsprechende File dem Stream zugeordnet. 
 	+ Schließe ich das File mit <Objektinstanz>.close(), so wird das File im Programm geschlossen und es ist für andere Programme (wieder) verfügbar. (Das istream/ostream-Objekt hat eine Zugriffsverwalung integriert!) Das Stream-Objekt bleibt allerdings erhalten bis zum Ende des Scopes! Es kann dann wiederverwendet werden, um andere Objekte zu öffnen (mit erneuter Verwendung von <Objektname>.open(<Dateiname>))!
 	+ Innerhalb des Stream-Objekt gelten die selben Codierungen wie bei cout, also '<<' für unten anfügen, \n für Zeilenumbruch
+
++ Ich kann Operatoren miteinander verketten, wenn die Rückgabetypen entsprechend passen!
+	z_1.operator-().operator+(5) funktioniert! -> z_1.operator-() ist das unäre Minus!
 
 ***Debugging***
 + Mit der Compilerdirektive #define und #ifdef <Anweisungen, wenn definiert> #endif lassen sich alle Debug-Teile des Codes für das Compilieren ausschalten
@@ -127,3 +135,10 @@
 + Möchte ich zur Kontrolle etwas im GNU-Plot Terminal ausgeben, so kann ich einfach print <Variable> schreiben
 
 + for-Schleifen und If-Statements sind ebenfalls möglich!
+
++ plotten mit 3d maps: 
+	+ set pm3d map
+	+ bei x y z - Koordinaten: splot 'abc.dat' u ($1):($2):($3), statt nur u 1:2:3 
+	+ für weitere Details siehe Aufgabe 2
+
+

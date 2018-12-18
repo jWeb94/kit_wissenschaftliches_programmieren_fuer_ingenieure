@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{} Variablen}
+\PYG{n}{PROG} \PYG{o}{=} \PYG{n}{aufgabe\PYGZus{}1}
+
+\PYG{n}{FLAGS} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{n}{O2}
+
+\PYG{n}{CC} \PYG{o}{=} \PYG{n}{g}\PYG{o}{++}
+
+\PYG{n}{SRC} \PYG{o}{=} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{main\PYGZus{}complex\PYGZus{}operator\PYGZus{}schreibweise}\PYG{p}{.}\PYG{n}{cpp}
+
+\PYG{n}{OBJ} \PYG{o}{=} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n+nl}{SRC}\PYG{p}{:.}\PYG{n}{cpp}\PYG{o}{=}\PYG{p}{.}\PYG{n}{o}\PYG{p}{)}
+
+\PYG{c+cp}{\PYGZsh{} Targets}
+\PYG{n+nl}{all}\PYG{p}{:} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{SRC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}
+
+\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}\PYG{o}{:} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{OBJ}\PYG{p}{)}
+	\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{CC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{FLAGS}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{OBJ}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{n}{o} \PYG{err}{\PYGZdl{}@}
+
+
+\PYG{o}{\PYGZpc{}}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:}\PYG{o}{\PYGZpc{}}\PYG{p}{.}\PYG{n}{cpp}
+	\PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{CC}\PYG{p}{)} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{FLAGS}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{n}{c} \PYG{err}{\PYGZdl{}}\PYG{o}{\PYGZlt{}}
+
+\PYG{n+nl}{clean}\PYG{p}{:}
+	 \PYG{n}{rm} \PYG{o}{*}\PYG{p}{.}\PYG{n}{o} \PYG{err}{\PYGZdl{}}\PYG{p}{(}\PYG{n}{PROG}\PYG{p}{)}																
+
+\PYG{c+cp}{\PYGZsh{} deps}
+\PYG{n}{complex}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{h}
+\PYG{n}{main\PYGZus{}complex\PYGZus{}beispiel}\PYG{p}{.}\PYG{n+nl}{o}\PYG{p}{:} \PYG{n}{main\PYGZus{}complex\PYGZus{}beispiel}\PYG{p}{.}\PYG{n}{cpp} \PYG{n}{complex}\PYG{p}{.}\PYG{n}{h}
+\end{Verbatim}

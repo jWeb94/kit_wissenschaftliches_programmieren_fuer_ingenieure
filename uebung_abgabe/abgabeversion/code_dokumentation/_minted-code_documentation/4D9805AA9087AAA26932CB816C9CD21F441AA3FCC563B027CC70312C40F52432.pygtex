@@ -1,0 +1,38 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}string\PYGZgt{}}
+
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZdq{}complex.h\PYGZdq{}}
+
+\PYG{k}{using} \PYG{k}{namespace} \PYG{n}{std}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{k}{const} \PYG{n}{MyComplex} \PYG{o}{\PYGZam{}}\PYG{n}{c}\PYG{p}{,}\PYG{k}{const} \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{txt}\PYG{p}{)\PYGZob{}}
+    \PYG{n}{cout}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{txt}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{}: (\PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{c}\PYG{p}{.}\PYG{n}{real}\PYG{p}{()}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{}, \PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{c}\PYG{p}{.}\PYG{n}{imag}\PYG{p}{()}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{l+s}{\PYGZdq{})\PYGZdq{}}\PYG{o}{\PYGZlt{}\PYGZlt{}}\PYG{n}{endl}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()\PYGZob{}}
+    \PYG{n}{MyComplex} \PYG{n}{z1} \PYG{p}{\PYGZob{}}\PYG{l+m+mf}{2.}\PYG{p}{,}\PYG{l+m+mf}{7.}\PYG{p}{\PYGZcb{};}
+    \PYG{n}{MyComplex} \PYG{n}{z2} \PYG{p}{\PYGZob{}}\PYG{l+m+mf}{42.}\PYG{p}{,}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{9}\PYG{p}{\PYGZcb{};}
+    \PYG{n}{MyComplex} \PYG{n}{z3} \PYG{p}{\PYGZob{}}\PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{11.}\PYG{p}{,}\PYG{l+m+mf}{19.}\PYG{p}{\PYGZcb{};}
+    \PYG{n}{MyComplex} \PYG{n}{z4}\PYG{p}{,}\PYG{n}{z5}\PYG{p}{,}\PYG{n}{z6}\PYG{p}{,}\PYG{n}{z7}\PYG{p}{,}\PYG{n}{z8}\PYG{p}{,}\PYG{n}{z9}\PYG{p}{;}
+
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z1}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z1 \PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z2}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z2 \PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z3}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z3 \PYGZdq{}}\PYG{p}{);}
+
+    \PYG{n}{z4}\PYG{o}{=}\PYG{n}{z1}\PYG{o}{*}\PYG{n}{z2}\PYG{p}{;}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z4}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z4=z1*z2 =\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{z5}\PYG{o}{=}\PYG{p}{(}\PYG{n}{z1}\PYG{o}{+}\PYG{n}{z2}\PYG{p}{);}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z5}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z5=(z1+z2) =\PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{z6}\PYG{o}{=}\PYG{p}{(}\PYG{n}{z1}\PYG{o}{+}\PYG{n}{z2}\PYG{p}{)}\PYG{o}{*}\PYG{l+m+mf}{2.}\PYG{p}{;}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z6}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z6=(z1+z2)*2. = \PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{z7}\PYG{o}{=}\PYG{p}{(}\PYG{n}{z2}\PYG{o}{+}\PYG{n}{z3}\PYG{p}{)}\PYG{o}{*}\PYG{n}{z1}\PYG{p}{;}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z7}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z7=(z2+z3)*z1 = \PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{z8}\PYG{o}{=}\PYG{n}{z1}\PYG{o}{+}\PYG{l+m+mf}{5.}\PYG{p}{;}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z8}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z8=z1+5. = \PYGZdq{}}\PYG{p}{);}
+    \PYG{n}{z9}\PYG{o}{=\PYGZhy{}}\PYG{n}{z1}\PYG{o}{+}\PYG{n}{z2}\PYG{p}{;}
+    \PYG{n}{output\PYGZus{}my\PYGZus{}cplx}\PYG{p}{(}\PYG{n}{z9}\PYG{p}{,}\PYG{l+s}{\PYGZdq{}z9=\PYGZhy{}z1+z2 = \PYGZdq{}}\PYG{p}{);}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/bash}
+
+\PYG{c+c1}{\PYGZsh{} loesche alle alten Dateien}
+rm ergebnis*
+
+\PYG{c+c1}{\PYGZsh{} Berechnung aller 5 Datensaetze}
+\PYG{k}{for} i in \PYG{k}{\PYGZdl{}(}seq \PYG{l+m}{1} 3\PYG{k}{)}\PYG{p}{;}
+\PYG{k}{do}
+    \PYG{n+nv}{NAMECURRENTFILEA}\PYG{o}{=}start\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}A.dat\PYGZdq{}}
+    \PYG{n+nv}{NAMECURRENTFILEB}\PYG{o}{=}start\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}B.dat\PYGZdq{}}
+    ./aufgabe\PYGZus{}2 \PYGZlt{} \PYGZdl{}NAMECURRENTFILEA
+    \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}finished run \PYGZdq{}}\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}A\PYGZdq{}}
+
+    \PYG{k}{if} \PYG{o}{[} \PYGZhy{}e \PYGZdl{}NAMECURRENTFILEB \PYG{o}{]}  
+    \PYG{k}{then}
+      ./aufgabe\PYGZus{}2 \PYGZlt{} \PYG{l+s+s2}{\PYGZdq{}start\PYGZdq{}}\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}B.dat\PYGZdq{}}
+      \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}finished run \PYGZdq{}}\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}B\PYGZdq{}}
+    \PYG{k}{else}
+      \PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}File start\PYGZdq{}}\PYGZdl{}i\PYG{l+s+s2}{\PYGZdq{}B.dat does not exists\PYGZdq{}}
+    \PYG{k}{fi}
+\PYG{k}{done}
+
+\PYG{n+nb}{echo} \PYG{l+s+s2}{\PYGZdq{}finished all runs\PYGZdq{}}
+\end{Verbatim}

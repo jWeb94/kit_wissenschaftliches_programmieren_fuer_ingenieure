@@ -11,6 +11,7 @@
 // Compilerdirektive, um Mehrfacheinbindungen zu vermeiden
 #define VECTOR_FUNCS_H_
 #include <cstddef>
+#include <string>
 
 class Vector { //Beginn der Vector Klasse
 

@@ -1,10 +1,10 @@
-PROG = polymorph
+PROG = planeten
 
 FLAGS = -O2
 
 CC = g++
 
-SRCS = polymorph.cpp polymorph_funcs.cpp
+SRCS = particle_dynamics.cpp verlet.cpp
 
 OBJ = $(SRCS:.cpp=.o)
 
@@ -15,13 +15,15 @@ $(PROG): $(OBJ)
 
 %.o:%.cpp
 	$(CC)  $(FLAGS) -c $<
-	
+
+
 clean:
 	rm -rf *.o $(PROG)
 
 ## dependencies
 
-polymorph_funcs.o: polymorph_funcs.cpp polymorph_funcs.h
-polymorph.o: polymorph.cpp polymorph_funcs.h
+verlet.o: verlet.cpp verlet.h particle.h
+particle_dynamics.o: particle_dynamics.cpp particle.h verlet.h
+
 
 

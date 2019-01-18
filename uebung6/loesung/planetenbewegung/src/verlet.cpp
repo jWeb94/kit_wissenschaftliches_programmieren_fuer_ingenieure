@@ -4,7 +4,7 @@
 //VERLET::
 
 void init_verlet(particle *const p, const int nmax){
-    // setze alle Kräfte auf Null:
+    // setze alle Krï¿½fte auf Null:
     for(int i=0;i<nmax;i++)
 	for(int n=0;n<dim;n++)
 	    p[i].f[n]=0.;
@@ -16,7 +16,7 @@ void update_positions(particle *const p,const int nmax, const double dt){
 	a= 0.5*dt/p[i].m;
 	for(int n = 0; n<dim; n++){
 	    p[i].pos[n] += dt * (p[i].vel[n]+ a*p[i].f[n]);
-	    p[i].fold[n] = p[i].f[n];
+	    p[i].fold[n] = p[i].f[n];                        // update letzer Wert der Kraft -> notwendig fuer naechsten Iterationsschritt
 	}
     }
 }

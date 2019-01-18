@@ -1,6 +1,7 @@
 PROG = planeten
 
 FLAGS = -Wall -O2
+# -Wall gibt mehr Warnungen aus als normal, um fragwuerdige Konstruktoren zu monieren!
 
 CC = g++
 
@@ -24,6 +25,3 @@ clean:
 
 verlet.o: verlet.cpp verlet.h particle.h
 particle_dynamics.o: particle_dynamics.cpp particle.h verlet.h
-
-
-

@@ -1,0 +1,30 @@
+% MAKRO AUSWAHLFENSTER Datentupel über Klassen ...
+auswahl.dat=[];
+auswahl.dat{1}={'Training data'};
+eval(gaitfindobj_callback('MI_Datenauswahl_Klassen'));
+eval(get(figure_handle(size(figure_handle,1),1),'callback'));
+
+% Auswahl Einzelmerkmal (EM)
+% {'Input variable'}
+set_textauswahl_listbox(gaitfindobj('CE_Auswahl_EM'),{'x'});eval(gaitfindobj_callback('CE_Auswahl_EM'));
+
+% Merkmalsauswahl
+% {'Selected features'}
+set_textauswahl_listbox(gaitfindobj('CE_Regression_Merkmalsauswahl'),{'Selected features'});eval(gaitfindobj_callback('CE_Regression_Merkmalsauswahl'));
+
+% Output
+% {'Output variable (disturbed)'}
+set_textauswahl_listbox(gaitfindobj('CE_Regression_Output'),{'y (undisturbed)'});eval(gaitfindobj_callback('CE_Regression_Output'));
+
+% MLP: Zeichnen
+set(gaitfindobj('CE_MLP_Zeichnen'),'value',1);eval(gaitfindobj_callback('CE_MLP_Zeichnen'));
+
+
+%% Regression,  Data-Mining,  Entwurf und Anwendung 
+eval(gaitfindobj_callback('MI_Regression_EnAn'));
+
+%% Regression,  Ansicht,  Eingangsgröße(n), Ausgangsgröße und Regressionsfunktion (2D bzw. 3D) 
+eval(gaitfindobj_callback('MI_Anzeige_Regression_x_y_2D3D'));
+
+
+

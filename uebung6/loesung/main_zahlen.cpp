@@ -9,17 +9,17 @@ int main(){
     Rueckseite von Seite 1
 
     Siehe auch: https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html
-    
+
     */
 
     double v1,v2,v3;
 
     cout.precision(15); // precision auf 15 setzen, um double vollstaendig abbilden zu können
 
-    double test_relativ = 1.e15;
+    double test_relativ = 1.e16;
     cout << "test_relativ is: " << test_relativ << endl;
     test_relativ = test_relativ - 5.1;
-    cout << fixed << "test_relativ - 1 is: " << test_relativ << endl;
+    cout << "test_relativ - 1 is: " << test_relativ << endl;
 
     double test2 = 1.e19;
     cout << test2 << endl;

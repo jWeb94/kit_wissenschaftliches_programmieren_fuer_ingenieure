@@ -8,7 +8,7 @@ if (~isempty(d))
 end;
 
 %PLEASE UPDATE ALL PATH NAMES TO YOUR LOCAL NAMES 
-gaitcadpath = '/home/jens/Schreibtisch/computational_intelligence_4cp/Uebung/scixminer';%'u:\scixminer';
+gaitcadpath = '/home/jens/Downloads/scixminer';%'u:\scixminer';
 addpath(gaitcadpath);
 addpath([gaitcadpath filesep 'plugins' filesep 'einzuggenerierung']);
 addpath([gaitcadpath filesep 'plugins' filesep 'mgenerierung']);

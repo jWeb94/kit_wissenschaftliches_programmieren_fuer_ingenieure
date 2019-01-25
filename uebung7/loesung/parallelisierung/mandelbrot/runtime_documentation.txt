@@ -1,0 +1,15 @@
+Laufzeiten:
+
+-> Ohne Parallelisierung:   14,3
+-> Mit Parallelisierung:    14,89 sec
+
+Die Parallelisierung macht also keinen Sinn! Der entstehende Overhead macht den entstehenden Berechnungsvorteil wieder wet!
+
+Warum ist das so?
+
+Durch die Notwendigkeit der Ordered-Anweisung wird am Ende auf die einzelnen Threads gewartet und es entsteht
+ein großer Overhead/Vergebene Rechenkapazität.
+
+Besser:
+Feld erstellen und parallel die jeweiligen Feldelemente aufrufen und beschreiben.
+Am Ende dann ein Loop zum in die Datei schreiben. 

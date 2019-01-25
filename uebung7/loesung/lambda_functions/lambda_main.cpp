@@ -51,7 +51,7 @@ int main(){
 
 
   // Captures
-  int val {42};
+  int val {42}; // Mit {} wird der Standartkonstruktor aufgerufen!
   // Aufgabe 1:
   std::for_each(stored_data.begin(), stored_data.end(), [&val](data &d){d.val2 = val;});
   std::for_each(stored_data.begin(), stored_data.end(), [](data d){std::cout << d.val1 << " " << d.val2 << std::endl; });

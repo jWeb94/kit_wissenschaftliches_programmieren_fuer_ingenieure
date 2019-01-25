@@ -1,0 +1,17 @@
+Anfangswerte fuer Waermeleitungsproblem in start.dat
+
+mit:
+
+ export OMP_NUM_THREADS=1
+
+wir die Anzahl der Threads auf 1 gesetzt
+
+Programm ausfuehren; CG Loeser Zeit merken
+
+Zahl der Threads erhöhen und Programm wieder ausfuehren
+
+CG Zeit gegen Zahl der Threads auftragen
+
+///// danach Anzahl der Stuetzstellen veraendern
+
+

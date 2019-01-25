@@ -2,6 +2,11 @@
 
 ### Allgemeines
 
++ Der Pragma-Befehl:
+	+ Wie alle anderen #-Befehle ist das eine Präprozessoranweisung!
+	+ Pragma sagt so viel aus wie "checke, ob du die nachfolgende Präprozessoranweisung kennst und wenn nicht ignoriere sie einfach." 
+
+
 ### Openmp-Befehle
 
 + #pragma omp atomic:

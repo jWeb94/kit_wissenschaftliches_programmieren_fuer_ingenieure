@@ -17,7 +17,7 @@ using namespace std;
 // actio=reactio
 
 void force_lj(particle *const p1,particle *const p2){
-    double r[dim],f[dim];
+    double r[dim],f[dim];           // r beinhaltet den Abstand der Atome in (zwei) Dimensionen
     double r2,rm6,one_div_r2;
     double fs;
     //
@@ -28,13 +28,13 @@ void force_lj(particle *const p1,particle *const p2){
     for(auto i=0;i<dim;i++)
         r2+=r[i]*r[i];
     //force: skalarer Anteil:
-    one_div_r2=1./r2;
-    rm6=one_div_r2*one_div_r2*one_div_r2; // (1/r^6) Anteil
-    fs= 24.*one_div_r2*rm6*(1.-2.*rm6);
+    one_div_r2=1./r2;                       // 1/(delta_r_x^2 + delta_r_y^2)
+    rm6=one_div_r2*one_div_r2*one_div_r2;   // (1/r^6) Anteil
+    fs= 24.*one_div_r2*rm6*(1.-2.*rm6);     // Berechnung des Lennard-Jones-Potentials, inklusive des Vorfaktors fuer die Kraft (die 24)
     for(auto i=0;i<dim;i++){
-        f[i]= fs*r[i];
-        p1->f[i]+=f[i];
-        p2->f[i]-=f[i];
+        f[i]= fs*r[i];                      // Kraft nach Lennard-Jones-Potentials
+        p1->f[i]+=f[i];                     // Kraft * Richtungsvektor
+        p2->f[i]-=f[i];                     // Kraft * Richtungsvektor
     }
 }
 
@@ -58,4 +58,3 @@ double energy_lj(particle *const p1,particle *const p2){
     energy= 4.*rm6*(rm6-1.);
     return double(energy);
 }
-

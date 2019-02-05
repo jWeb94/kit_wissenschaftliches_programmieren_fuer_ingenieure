@@ -35,7 +35,7 @@ public:
   int get_size() const { return N; }
 private:
   T m_Array[N]; // Stack Alloziert -> Muss waehrend der Compile-Zeit bekannte Groesse haben!
-}
+};
 
 /*
 
@@ -72,11 +72,11 @@ int  main(){
 
   std::cout << "here comes the class template" << std::endl;
 
-  Array<5, float> test_array;
+  Array<float, 5> test_array;
   std::cout << "this is the size of the test_array: " << test_array.get_size() << std::endl;
 
-  Array<2, int> test_array;
-  std::cout << "this is the size of the test_array: " << test_array.get_size() << std::endl;
+  Array<int, 2> test_array_2;
+  std::cout << "this is the size of the test_array: " << test_array_2.get_size() << std::endl;
 
   return 0;
 }

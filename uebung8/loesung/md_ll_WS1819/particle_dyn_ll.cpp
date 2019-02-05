@@ -11,13 +11,11 @@ using namespace std;
 
 //globale Variablen:
 
-particle * Teilchen;
-unsigned int ntot;
+particle * Teilchen;      // Erstelle Teilchen Array Pointer -> wird in init_structure mit Referenz versehen!
+unsigned int ntot;        // Anzahl an Teilchen
 
-// Deklarationen: Routinen in dieser Datei
-
+// Deklarationen: Routinen in dieser Datei - um in main-Methode drauf zugreifen zu koennen, ohne die definition komplett hin schreiben zu muessen!
 void init_structure(const string &);
-
 void force_calculation(particle * const ,const unsigned int  ntot,void force(particle*const ,particle*const));
 void euler_dynamics(particle*const, const unsigned int ntot,const double dt);
 void write_structure(particle *p,const unsigned int nmax,const unsigned int nstep);
@@ -75,9 +73,9 @@ int main(){
     L[1]*=gitter_konstante;
 
     // Vorbereitung: Nachbarschaftsliste:
-    init_linked_list(L,rcut,ntot);
+    init_linked_list(L,rcut,ntot);          // Erstellt ll und lc und initialisiert mit -1
     print_neighour_list();
-    setup_neighbour_list(Teilchen,ntot);
+    setup_neighbour_list(Teilchen,ntot);    // Erstellt die tatsaechlichen ll und lc fuer die Anfangskonfiguration
     print_neighour_list();
 
     cout<<"1: Euler (1)"<<endl;
@@ -97,12 +95,12 @@ int main(){
         // Verlet Verfahren mit Nachbarschaftslisten
         init_verlet(Teilchen,ntot);
         while(time<time_max){
-            setup_neighbour_list(Teilchen,ntot);
+            setup_neighbour_list(Teilchen,ntot);                    // Update der ll und lc: Hier werden die ll und lc geschrieben, basierend auf dem Array 'Teilchen', welches alle Atome beinhaltet
             time+=dt;
-            update_positions(Teilchen,ntot,dt);
-            force_calculation_neighbour(Teilchen,ntot,force_lj);
-            update_velocities(Teilchen,ntot,dt);
-            write_structure(Teilchen,ntot,nstep);
+            update_positions(Teilchen,ntot,dt);                     // Berechne neue Geschwindigkeiten und neue Positionen
+            force_calculation_neighbour(Teilchen,ntot,force_lj);    // Berechne Kraft auf Teilchen -> hier kommt ll und lc ins Spiel!
+            update_velocities(Teilchen,ntot,dt);                    // Normaler Verlet zur Berechnung von v
+            write_structure(Teilchen,ntot,nstep);                   // Schreibe die berechneten Werte in eine Datei
             nstep++;
         }
     } // REST fuer andere Verfahren
@@ -174,7 +172,7 @@ void force_calculation(particle *const Teilchen,const unsigned int nmax,
     }
 }
 
-// Einlesen der Startstruktur mit Anfangsbedingungen 
+// Einlesen der Startstruktur mit Anfangsbedingungen
 // (Geschwindigkeit)
 
 void init_structure(const string &filename){
@@ -223,10 +221,3 @@ void write_structure(particle *const p,const unsigned int nmax,const unsigned in
 
 
 }
-
-
-
-
-
-
-

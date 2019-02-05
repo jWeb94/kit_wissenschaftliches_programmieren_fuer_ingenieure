@@ -7,7 +7,7 @@ struct particle{
     double pos[dim];
     double vel[dim];
     double f[dim];
-    double fold[dim]; // fuer Verlet Verfahren
+    double fold[dim]; // fuer Verlet Verfahren - Kraft im letzten Iterationsschritt
     double m;
 };
 

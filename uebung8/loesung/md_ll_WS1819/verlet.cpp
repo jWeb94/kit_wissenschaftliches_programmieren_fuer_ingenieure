@@ -12,11 +12,11 @@ void init_verlet(particle *const p, const unsigned int nmax){
 
 void update_positions(particle * const p,const unsigned int nmax, const double dt){
     double a;
-    for(int i=0;i<nmax;i++){
+    for(int i=0;i<nmax;i++){            // Gehe alle Teilchen durch
         a= 0.5*dt/p[i].m;
-        for(int n = 0; n<dim; n++){
+        for(int n = 0; n<dim; n++){     // Gehe alle Dimensionen durch
             p[i].pos[n] += dt * (p[i].vel[n]+ a*p[i].f[n]);
-            p[i].fold[n] = p[i].f[n];
+            p[i].fold[n] = p[i].f[n];   // Speichere Kraft im letzten Iterationsschritt - notwendig fuer Verlet-Verfahren!
         }
     }
 }

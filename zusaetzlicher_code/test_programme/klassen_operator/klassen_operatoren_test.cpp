@@ -53,8 +53,10 @@ int main(){
   cout << "here are the component a of f: " << endl;
   cout << "f.a: " << f.get_a() << endl;
 
+  derived my_derived; // Standartkonstruktor von derived wird aufgerufen!
+
   // f = a + b;
   // f = a*b;
-
+  cout << "END!" << endl;
   return 0;
 }

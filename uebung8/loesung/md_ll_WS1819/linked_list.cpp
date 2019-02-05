@@ -6,7 +6,7 @@ using namespace std;
 int **lc;  // linked cell
 int *ll;   // linked list
 int nmax[dim]; // Anzahl der Unterteilungen in x und y Richtung
-double rc[dim]; //rcut off in die jeweilige Berechnung, da L[] 
+double rc[dim]; //rcut off in die jeweilige Berechnung, da L[]
 // nicht notwendigerweise ein vielfaches von rcut ist
 
 
@@ -27,15 +27,17 @@ void init_linked_list(const double L[], const double rcut,const unsigned int nto
     cout<<"nmax:"<<nmax[0]<<","<<nmax[1]<<endl;
     cout<<"rcut:"<<rcut<<":"<<rc[0]<<","<<rc[1]<<endl;
 
+    // Erstelle die linked list
     ll = new int[ntot]; // fuer jedes Atom wird ein Eintrag benoetigt
+    // Erstelle lc als dynamisches Array auf dem Heap - mit zusammenhaengendem Speicher!
     lc = new int*[nmax[0]];
-    lc[0]= new int[(nmax[0])*(nmax[1])]; // siehe 2d Feld Initialisierung
-    for(auto i=1;i<nmax[0];i++) // Pointer Arithmetik
+    lc[0]= new int[(nmax[0])*(nmax[1])];
+    for(auto i=1;i<nmax[0];i++)
         lc[i]=lc[0]+i*(nmax[1]);
     //
     for(auto i=0;i<ntot;i++)
         ll[i]=-1;
-    
+
     for(auto i=0;i<nmax[0];i++)
         for(auto j=0;j<nmax[1];j++)
             lc[i][j]=-1;
@@ -44,6 +46,7 @@ void init_linked_list(const double L[], const double rcut,const unsigned int nto
 
 // Aufbau der Nachbarschaftlisten
 void setup_neighbour_list(const particle * const p, const unsigned int ntot){
+    // Initialsisiere ll und lc mit -1 in allen Komponenten
     for(auto i=0;i<ntot;i++)
         ll[i]=-1;
     for(auto i=0;i<nmax[0];i++)
@@ -52,15 +55,15 @@ void setup_neighbour_list(const particle * const p, const unsigned int ntot){
 
     {  // Aufbau der Listen:
       int nidx[dim];
-      for(auto i=0;i<ntot;i++){
-          for(auto n=0;n<dim;n++){
-              nidx[n]=int(floor(p[i].pos[n]/rc[n]));
-              nidx[n]=min(nidx[n],nmax[n]-1); // Bereichspruefung
-              nidx[n]=max(nidx[n],0);
+      for(auto i=0;i<ntot;i++){                                   // Iteriere ueber alle Atome
+          for(auto n=0;n<dim;n++){                                // Iteriere ueber alle Dimensionen (wir: 2D)
+              nidx[n]=int(floor(p[i].pos[n]/rc[n]));              // x_koord/r_cut = Anzahl der Zelle
+              nidx[n]=min(nidx[n],nmax[n]-1);                     // Wenn an oberer Grenze ausserhalb des Untersuchungsbereichs, dann schiebe in letzte Zelle des Untersuchungsbereichs
+              nidx[n]=max(nidx[n],0);                             // Wenn unterhalb unterer Grenze des Untersuchungsbereichs, dann schiebe in erste Zelle
           }
 
-          ll[i] = lc[nidx[0]][nidx[1]];
-          lc[nidx[0]][nidx[1]]=i;
+          ll[i] = lc[nidx[0]][nidx[1]];                           // Wenn hier schon ein Atom in der Zelle ist, wissen wir, dass das aktuelle Atom i den vorher (in der naechsten Zeile beschriebnen) Nachbarn hat!
+          lc[nidx[0]][nidx[1]]=i;                                 // Schreibe die Atomnummer in lc -> Wir wissen jetzt, dass Atom Nummer i in Zelle i, j (bestimmt durch die Koordinaten nidx[0] und nidx[1]) ist.
       }
 
     }
@@ -98,7 +101,7 @@ void force_calculation_neighbour(particle *const p, const unsigned int ntot,
     int ndx[]={1,1,0,-1};       //      [3](i-1,j+1)-- [2](i,j+1) --[1](i+1,j+1)
     int ndy[]={0,1,1,1};        //                        (i,j)   --[0](i+1,j)
     int n1,n2,nx,ny;
-    // Kraft auf Null setzen:
+    // Kraft auf Null setzen: - da wird nicht wissen, welche Kraft noch wirkt, da sich evt Atome so weit weg bewegt haben, dass das zu untersuchende Teilchen die Kraft nicht mehr spürt!
     for(auto i=0;i<ntot;i++)
         for(auto n=0;n<dim;n++)
             p[i].f[n]=0;
@@ -106,14 +109,14 @@ void force_calculation_neighbour(particle *const p, const unsigned int ntot,
     // neue Kraft berechnen: hier mal ohne auto...
     for(int i=0;i<nmax[0];i++){
         for(int j=0;j<nmax[1];j++){
-            if(lc[i][j]!=-1){
-                n1=lc[i][j];
+            if(lc[i][j]!=-1){                                   // Wenn in einer Zelle aus lc Atome zu finden sind (dann ist ja schliesslich der Wert von lc != -1)
+                n1=lc[i][j];                                    // Erstes Atom in der Zelle wird n1 zugeordnet!
                 //	cout<<"Zelle i,j:"<<i<<","<<j<<endl;
                 while(n1!=-1){
-                    n2=ll[n1];
-                    while(n2!=-1){
-                        force(&p[n1],&p[n2]);
-                        n2=ll[n2];
+                    n2=ll[n1];                                  // Nachbar des ersten Atoms n1 wird n2 zugeordnet
+                    while(n2!=-1){                              // So lange das Nachbaratom n2 noch Nachbarn hat
+                        force(&p[n1],&p[n2]);                   // force kommt aus interaction_lj/force_lj -> Wird fuer alle Nachbarn von n1 aufaddiert!
+                        n2=ll[n2];                              // Naechster Nachbar!
                     }
 
                     // Nachbarzellen
@@ -138,4 +141,3 @@ void force_calculation_neighbour(particle *const p, const unsigned int ntot,
         }
     }
 }
-

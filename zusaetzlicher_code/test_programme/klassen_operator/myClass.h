@@ -1,12 +1,14 @@
 #ifndef _MYCLASS  // include guard - wegen der one definition rule
 #define _MYCLASS  // include guard hier nicht notwendig aber der vollstaendigkeit halber trotzem implementiert!
 
+#include<iostream>
+
 // Unabhaengig von der zugehoerigen cpp, da hier nur die Schnittstelle definiert wird. Header sind auch KEINE Translation Units, dienen also nur die Bekanntgabe von Komponenten in anderen (und der eigenen) Translation Unit!
 class myClass{
   // Klassendefinition
 public:
   //myClass() = default;        // Sagen Compiler, dass keine eigene Implementierung der vom Compiler implizit erstellten Funktion existieren darf. Bzw 'verwende die Standartimplementierung in jedem Fall' (wenn eine andere Implementierung vorliegt: Compilerfehler)
-  //myClass();                    // Standartkonstruktor
+  myClass();                    // Standartkonstruktor
   myClass(int in_1, int in_2);  // Ueberladener Konstruktor 1
   myClass(int input_val);       // Ueberladener Konstruktor 2
   //myClass(const myClass &);     // Kopierkonstruktor
@@ -27,7 +29,18 @@ public:
 private:
   int a;
   int b;
-  myClass();
+  //myClass();
+};
+
+
+class derived: public myClass
+{
+public:
+  derived();
+
+private:
+  int r;
+
 };
 
 #endif // _MYCLASS

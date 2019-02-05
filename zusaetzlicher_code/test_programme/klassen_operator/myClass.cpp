@@ -1,15 +1,14 @@
 #include"myClass.h"  // Stellt die Abhaenigkeit her, damit ich in der Implementierung auch alle anderen Methoden, Variablen und Funktionen verwenden kann. Ohne das wuerde this->x nicht funktionieren!
-#include<iostream>
 
 using namespace std;
 
-/*
+
 myClass::myClass(){
   cout << "called the standart constructor" << endl;
   //this->a = -1;
   //this->b = -1;
 }
-*/
+
 
 myClass::myClass(int in_1, int in_2){
   cout << "called construktor 1" << endl;
@@ -65,4 +64,11 @@ int myClass::get_a(){
 
 void myClass::set_a(const int & val_a){
   this->a = val_a;
+}
+
+
+derived::derived()//:myClass(-1, -1), r(-1)
+{
+  cout << "Standartkonstruktor derived was called!" << endl;
+  
 }
